@@ -1,10 +1,10 @@
 ---
 layout: home
-title: Jekyll Gitbook Theme
+title: Jose Valerio SNHU Capstone
 permalink: /
 ---
 
-Make Jelly site have a GitBook look!
+Module 1 - Theme Selection
 
 ## Demo
 
