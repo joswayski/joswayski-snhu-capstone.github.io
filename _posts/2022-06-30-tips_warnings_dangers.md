@@ -1,6 +1,6 @@
 ---
 title: Tips, Warnings, and Dangers
-author: Tao He
+author: Jose Valerio
 date: 2022-06-30
 category: Jekyll
 layout: post
@@ -20,14 +20,14 @@ Using a `{: .block-tip}` attribute:
 >
 > This guide is last tested with @napi-rs/canvas^0.1.20, so make sure you have
 > this or a similar version after installation.
-{: .block-tip }
+> {: .block-tip }
 ```
 
 > ##### TIP
 >
 > This guide is last tested with @napi-rs/canvas^0.1.20, so make sure you have
 > this or a similar version after installation.
-{: .block-tip }
+> {: .block-tip }
 
 ### Warnings
 
@@ -38,14 +38,14 @@ Using a `{: .block-warning}` attribute:
 >
 > Be sure that you're familiar with things like async/await and object destructuring
 > before continuing, as we'll be making use of features like these.
-{: .block-warning }
+> {: .block-warning }
 ```
 
 > ##### WARNING
 >
 > Be sure that you're familiar with things like async/await and object destructuring
 > before continuing, as we'll be making use of features like these.
-{: .block-warning }
+> {: .block-warning }
 
 ### Dangers
 
@@ -55,13 +55,13 @@ Using a `{: .block-danger}` attribute:
 > ##### DANGER
 >
 > You cannot delete an ephemeral message.
-{: .block-danger }
+> {: .block-danger }
 ```
 
 > ##### DANGER
 >
 > You cannot delete an ephemeral message.
-{: .block-danger }
+> {: .block-danger }
 
 [1]: https://discordjs.guide/popular-topics/canvas.html#setting-up-napi-rs-canvas
 [2]: https://kramdown.gettalong.org/quickref.html#block-attributes
