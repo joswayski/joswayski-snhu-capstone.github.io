@@ -23,24 +23,12 @@ As a software engineer, I was already very familiar with these topics from my da
 - Evaluating tradeoffs between different databases that were most appropriate for my use case and the desired performance SLAs
 - Following security best practices by storing environment secrets outside of the codebase that can be swapped without a code change
 - Limiting database connections to our server instances so they are not openly available to the public
-- Rearchitecting a core feature to use a more efficient data structure (doubly linked list) which would remove a massive limitation for our customers
-- Using a hash map with a custom sorting algorithm to efficiently sort the doubly linked list in O(n) time instead of O(n<sup>2</sup>)
-- Adding type safety wherever possible to prevent accessing undefined properties in code and leveraging built in IDE tools like auto complete suggestions
+- Practicing tenant data isolation by embedding each tenant ID into the queryable index of each entity
+- Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers
+- Using a hash map with a custom sorting algorithm to efficiently sort the data structure above in O(n) time instead of O(n<sup>2</sup>)
+- Adding type safety wherever possible to prevent accessing undefined properties in code using TypeScript
 
 As I progress throughout my career, I would like to be knowledgeable in a variety of areas with a specialization in cloud technologies like Amazon Web Services. The changes made in this ePortfolio reflect my professional goals by making me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science and the software application development lifecycle as well as my desired future specialization in cloud computing.
-
---
-by touching on a broad spectrum of changes in the application lifecycle as well as deployment on AWS.
-A. Discuss how completing your coursework throughout the program and developing the ePortfolio has helped showcased your strengths and
-shape your professional goals and values and prepared you to either enter or become more employable in the computer science field.
-
-collaborating in a team environment, communicating to stakeholders, data structures and algorithms, software engineering and database,
-and security. Note: This should function as an overall introduction to your skills and you will become more specific relative to the included
-artifacts in the next section.
-
-B. Summarize/introduce how your artifacts fit together and inform the portfolio as a whole; this will help demonstrate the full range of your
-computer science talents and abilities? This section should introduce your audience to the technical artifacts that will follow the professional
-self-assessment.
 
 ## Code Review
 
