@@ -30,19 +30,19 @@ As a software engineer, I was already very familiar with these topics from my da
 
 As I progress throughout my career, I would like to be knowledgeable in a variety of areas with a specialization in cloud technologies like Amazon Web Services. The changes made in this ePortfolio reflect my professional goals by making me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science and the software application development lifecycle as well as my desired future specialization in cloud computing.
 
-In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [open source](https://github.com/plutomi/plutomi) applicant tracking system that I created and have been working on for just over a year. The first section is a code review created at the start of CS-499 outlining planned enhancements that I could make to the project. The next section is a deep dive into the technical enhancements made, how they work, and how they demonstrate my skills and abilities in the three categories of software design and engineering, algorithms and data structures, and databases. Finally, I will describe how these enhancements helped me achieve the desired course outcomes.
+In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [open source](https://github.com/plutomi/plutomi) applicant tracking system that I created and have been working on for just over a year. The first section is a code review created at the start of CS-499 outlining planned enhancements that I could make to the project. The next section is a deep dive into the technical enhancements made, how they work, and how they demonstrate my skills and abilities in the three categories of software design and engineering, algorithms and data structures, and databases. Finally, I will describe how these enhancements helped me achieve the desired course outcomes of CS-499 and my computer science program at SNHU.
 
 ## Code Review
 
-At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is
+At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by the end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed here:
 
 https://www.youtube.com/watch?v=k08ZBwK6sBw
 
 ## Plutomi Artifact and Enhancements
 
-This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
+> Note: I am using one artifact for all three categories of this ePortfolio
 
-> Note that we are using this artifact across categories
+This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
 Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
 Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
