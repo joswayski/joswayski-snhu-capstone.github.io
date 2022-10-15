@@ -30,11 +30,11 @@ As a software engineer, I was already very familiar with these topics from my da
 
 As I progress throughout my career, I would like to be knowledgeable in a variety of areas with a specialization in cloud technologies like Amazon Web Services. The changes made in this ePortfolio reflect my professional goals by making me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science and the software application development lifecycle as well as my desired future specialization in cloud computing.
 
-In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [open source](https://github.com/plutomi/plutomi) applicant tracking system that I created and have been working on for just over a year, a code review created at the start of CS-499 outlining planned enhancements that I could make to the project, a deep dive into the technical enhancements and how they work, and a description on how these enhancements helped me achieve the desired course outcomes.
+In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [open source](https://github.com/plutomi/plutomi) applicant tracking system that I created and have been working on for just over a year. The first section is a code review created at the start of CS-499 outlining planned enhancements that I could make to the project. The next section is a deep dive into the technical enhancements made, how they work, and how they demonstrate my skills and abilities in the three categories of software design and engineering, algorithms and data structures, and databases. Finally, I will describe how these enhancements helped me achieve the desired course outcomes.
 
 ## Code Review
 
-At the start of my last course at SNHU, I created a code review going over my enhancedments
+At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is
 
 https://www.youtube.com/watch?v=k08ZBwK6sBw
 
