@@ -1,0 +1,191 @@
+<blockquote>
+  <p><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> <strong>This repository is currently undergoing maintenance and many breaking changes. These changes are necessary to enhance the long term stability of the project. Use at your own risk as long as this banner is here - things <em>will</em> be broken!</strong></p>
+</blockquote>
+
+<hr>
+
+<h1 id="plutomi">Plutomi</h1>
+
+<p><a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a>
+<a href="#"><img src="https://img.shields.io/github/license/plutomi/plutomi?style=flat-square" alt="License"></a>
+<a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-3-blue.svg?style=flat-square" alt="All Contributors"></a></p>
+
+<h3 id="website--live-demo"><a href="https://plutomi.com">Website / Live Demo</a></h3>
+
+<p>Plutomi is a <em>multi-tenant</em> <a href="https://en.wikipedia.org/wiki/Applicant_tracking_system">applicant tracking system</a> that streamlines your entire application process with automated workflows at any scale.</p>
+
+<p><img src="images/infra.png" alt="infra"></p>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>Having worked at a company that needed to recruit thousands of contractors every month, improving our acquisition flow at that scale became a challenge. Many processes had to be done manually because there just wasn’t an API available for it. We often hit limits and had to work around them with a myriad of webhooks, queues, and batch jobs to keep things running smoothly. It would have benefited us to have an open platform to contribute to and build upon and this project is our attempt to do just that.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>You can create <code class="language-plaintext highlighter-rouge">openings</code> which people can apply to. An opening can be anything from a job, a location for a delivery company, or a program like a summer camp.</p>
+
+<p>In these openings, you can create <code class="language-plaintext highlighter-rouge">stages</code> which are individual steps for your application. You can add questions for applicants to answer, and setup automatic move rules that determine where applicants go next depending on their answers or after a certain time period.</p>
+
+<p>An <em>opening</em> for a delivery company might look like this:</p>
+
+<p>Opening name: <strong>New York City</strong></p>
+
+<p>Stage order:</p>
+
+<ol>
+  <li>
+<strong>Questionnaire</strong> - Collect basic information of an applicant. If an applicant does not complete this stage in 30 days, move them to the <em>Waiting List</em>.</li>
+  <li>
+<strong>Waiting List</strong> - An idle pool of applicants</li>
+  <li>
+<strong>Document Upload</strong> - Collect an applicant’s license</li>
+  <li>
+<strong>Final Review</strong> - Manually review an applicant’s license for compliance</li>
+  <li>
+<strong>Ready to Drive</strong> - Applicants that have completed your application</li>
+</ol>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>Install <a href="https://docs.docker.com/get-docker/">Docker</a>
+</li>
+  <li>Create <code class="language-plaintext highlighter-rouge">.env.development</code> &amp; <code class="language-plaintext highlighter-rouge">.env.production</code> files, see the <a href=".env.sample">.env.sample</a> for the values required</li>
+  <li>Create a <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html">Hosted Zone</a> in Route53 with your domain</li>
+  <li>Create a <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domain-procedure.html">verified identity</a> with your domain in SES</li>
+  <li>Create a <a href="https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html#request-public-console">certificate for your domain</a> in AWS Certificate Manager</li>
+</ul>
+
+<h2 id="useful-commands">Useful commands</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>npm run dev</td>
+      <td>Will deploy a copy of <strong>most</strong> the backend to AWS (Dynamo, Event Bridge, SQS, Step Functions, etc). The frontend &amp; Express server run in localhost</td>
+    </tr>
+    <tr>
+      <td>npm run test</td>
+      <td>Will run tests</td>
+    </tr>
+    <tr>
+      <td>npm run deploy-prod</td>
+      <td>Will deploy everything to your production environment</td>
+    </tr>
+    <tr>
+      <td>npx cross-env NODE_ENV=(development or production) cdk deploy -e (development or production)-STACK_NAME</td>
+      <td>Will deploy a specific stack in the desired environment</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="language-tooling--infrastructure">Language, Tooling, &amp; Infrastructure</h2>
+
+<p>All infrastructure is managed by CDK and we use <a href="https://jestjs.io/">Jest</a> for testing. Everything is written TypeScript and we would appreciate any assistance on types or tests as we’re definitely not the best <img class="emoji" title=":sweat_smile:" alt=":sweat_smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png" height="20" width="20"></p>
+
+<p>The frontend is using <a href="https://nextjs.org/">NextJS</a> and we have an <a href="https://expressjs.com/">Express</a> app serving it from <a href="https://aws.amazon.com/fargate/">AWS Fargate</a>.</p>
+
+<h4 id="dynamodb">DynamoDB</h4>
+
+<p>We’re using a single table design for this project. If you’re new to DynamoDB, I created <a href="https://youtube.com/playlist?list=PL4wKJluo18Z2Nh1QlU0LXKy6EbPwB17xq">a playlist</a> that will help you get accustomed to it. There are videos from Alex Debrie, Rick Houlihan, Pete Naylor, and an awesome talk by Kai Zhao on adaptive capacity.</p>
+
+<p>There are some asynchronous events that are made possible by the Dynamo streams:</p>
+
+<ol>
+  <li>
+    <p><em>Cascading deletions</em> - When deleting an entity that has child items such as an org and its openings or an opening and its stages, the <a href="images/DeleteChildrenStepFunction.png">parent is deleted right away but the children will be deleted asynchronously</a> with a state machine. At the top of the workflow there is a <code class="language-plaintext highlighter-rouge">choice</code> state which figures out which entity was deleted. It then retrieves all of the <strong><em>top-level</em></strong> child items for that entity (deleting an opening only retrieves the stages, but not the applicants in those stages). The state machine maps through each item and deletes them. This causes the state machine to be called again: Dynamo stream -&gt; EventBridge -&gt; StepFunction with the newly deleted entity.</p>
+  </li>
+  <li>
+    <p><em>Webhooks</em> - Any applicant events (<code class="language-plaintext highlighter-rouge">INSERT</code>, <code class="language-plaintext highlighter-rouge">MODIFY</code>, or <code class="language-plaintext highlighter-rouge">DELETE</code>) trigger another state machine that sends the entire event payload that we received from Dynamo to your configured URL.</p>
+  </li>
+</ol>
+
+<p>We’re also using Athena to query Dynamo with plain old SQL using <a href="https://docs.aws.amazon.com/athena/latest/ug/connect-to-a-data-source.html">Federated Queries</a> - (<a href="https://www.youtube.com/watch?v=tZia_5qxPkY">video</a>). We haven’t figured out how to add a data source using CDK but this is very simple. Once deployed, click <a href="https://console.aws.amazon.com/athena/home?region=us-east-1#/data-sources">Connect Data Source</a> and select <strong>DynamoDB</strong>. Choose a name and then select the lambda function that is created in the stack: <em>NODE_ENV</em>-athena-dynamo-query-function</p>
+
+<h2 id="other-useful-repos">Other useful repos:</h2>
+
+<ul>
+  <li><a href="https://github.com/aws/aws-cdk/tree/master/packages/%40aws-cdk/aws-ecs-patterns">AWS ECS Patterns</a></li>
+  <li><a href="https://github.com/cdk-patterns/serverless">Serverless CDK Patterns</a></li>
+</ul>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>To make a contribution, submit a pull request into the <code class="language-plaintext highlighter-rouge">main</code> branch. You will be asked to sign a <a href="https://en.wikipedia.org/wiki/Contributor_License_Agreement">Contributor License Agreement</a> for your PR. You’ll only have to do this once.</p>
+
+<p>This project tries to follow Semantic Pull Requests some what.
+Your PR <em>title</em> should have the following format:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>feat: OR enhancement:</td>
+      <td>Added a new feature or enhancement</td>
+    </tr>
+    <tr>
+      <td>fix:</td>
+      <td>Squashed some bugs!</td>
+    </tr>
+    <tr>
+      <td>docs:</td>
+      <td>Updated documentation, readme, examples</td>
+    </tr>
+    <tr>
+      <td>test:</td>
+      <td>Added / modified tests</td>
+    </tr>
+    <tr>
+      <td>chore:</td>
+      <td>Maintenance, refactoring, etc. If it doesn’t fit above, it goes here</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example: <em>fix: Removed the double modals popping up on login</em></p>
+
+<h2 id="license">License</h2>
+
+<p>This project is licensed under the <a href="LICENSE">Apache 2.0 license</a></p>
+
+<h2 id="contributors-">Contributors ✨</h2>
+
+<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center">
+<a href="https://github.com/joswayski"><img src="https://avatars.githubusercontent.com/u/22891173?v=4?s=100" width="100px;" alt=""><br><sub><b>Jose Valerio</b></sub></a><br><a href="https://github.com/plutomi/plutomi/commits?author=joswayski" title="Code">💻</a> <a href="#infra-joswayski" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-joswayski" title="Maintenance">🚧</a>
+</td>
+    <td align="center">
+<a href="https://github.com/praguru14"><img src="https://avatars.githubusercontent.com/u/48213609?v=4?s=100" width="100px;" alt=""><br><sub><b>praguru14</b></sub></a><br><a href="https://github.com/plutomi/plutomi/commits?author=praguru14" title="Code">💻</a> <a href="#maintenance-praguru14" title="Maintenance">🚧</a>
+</td>
+    <td align="center">
+<a href="https://github.com/mazupicua"><img src="https://avatars.githubusercontent.com/u/37680756?v=4?s=100" width="100px;" alt=""><br><sub><b>Jose Valerio</b></sub></a><br><a href="https://github.com/plutomi/plutomi/commits?author=mazupicua" title="Code">💻</a> <a href="#maintenance-mazupicua" title="Maintenance">🚧</a> <a href="https://github.com/plutomi/plutomi/issues?q=author%3Amazupicua" title="Bug reports">🐛</a>
+</td>
+    <td align="center">
+<a href="https://github.com/Jeremyjay121"><img src="https://avatars.githubusercontent.com/u/94778748?v=4?s=100" width="100px;" alt=""><br><sub><b>Jeremy Trenchard</b></sub></a><br><a href="https://github.com/plutomi/plutomi/commits?author=Jeremyjay121" title="Code">💻</a>
+</td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
