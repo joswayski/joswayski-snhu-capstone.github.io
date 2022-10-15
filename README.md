@@ -4,6 +4,19 @@ title: Jose Valerio - SNHU CS-499 Capstone
 permalink: /
 ---
 
+## Table of Contents
+
+1. [Professional Self Assessment](#professional-self-assessment)
+2. [Code Review](#code-review)
+3. [Plutomi Artifact & Enhancements](#plutomi-artifact-and-enhancements)
+4. [Narratives](#narratives)
+
+## --
+
+## --
+
+--
+
 ## Professional Self Assessment
 
 A. Discuss how completing your coursework throughout the program and developing the ePortfolio has helped showcased your strengths and
@@ -23,7 +36,9 @@ At the start of this course, I created a code review going over my enhancedments
 
 https://www.youtube.com/watch?v=k08ZBwK6sBw
 
-## Enhanced Artifact - Plutomi
+## Plutomi Artifact and Enhancements
+
+This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
 > Note that we are using this artifact across categories
 
@@ -35,6 +50,14 @@ Develop a security mindset that anticipates adversarial exploits in software arc
 
 ## Narratives
 
+> A. Briefly describe the artifact. What is it? When was it created?
+> B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
+> skills and abilities in software development?
+> C. Reflect on the process of enhancing and/or modifying the artifact. What did you learn as you were creating it and improving it? What
+> challenges did you face? How did you incorporate feedback as you made changes to the artifact? How was the artifact improved?
+
+---
+
 • Develop an accompanying narrative that explains why you selected this artifact and the skills showcased in enhancing it.
 • Submit the artifact and narrative for instructor review and comments.
 You will then have the opportunity to incorporate these comments and polish the artifact before publishing it in the ePortfolio.
@@ -42,15 +65,15 @@ The narrative should focus less on the actual creation of each artifact and more
 
 . Submit in the course a written narrative about your professional journey---you can also share this on GitHub, but it must align to how you quantifiably (not I think, I feel but this aligns with this standards, best practice, security practice etc.) REACHED the five course outcomes through your enhancements:
 
-Course Outcome 1: You EmployED strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science by completing the following enhancements****\_****
+Course Outcome 1: You EmployED strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science by completing the following enhancements\***\*\_\*\***
 
-Course Outcome 2: You DesignED, DevelopED, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts by completing the following enhancements****\_****
+Course Outcome 2: You DesignED, DevelopED, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts by completing the following enhancements\***\*\_\*\***
 
-Course Outcome 3: You DesignED and EvaluateED computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices by completing the following enhancements****\_****
+Course Outcome 3: You DesignED and EvaluateED computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices by completing the following enhancements\***\*\_\*\***
 
-Course Outcome 4: You DemonstrateD an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals by completing the following enhancements****\_****
+Course Outcome 4: You DemonstrateD an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals by completing the following enhancements\***\*\_\*\***
 
-Course Outcome 5: You DevelopED a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources by completing the following enhancements****\_****
+Course Outcome 5: You DevelopED a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources by completing the following enhancements\***\*\_\*\***
 
 Your portfolio must show what you can do. To say I know Python is your opinion, but to showcase a Python program with best practices, and support that with a written narrative for example carries a lot more evidence
 TODO best practices like using Typescript and types everywhere
