@@ -14,19 +14,26 @@ permalink: /
 ## Professional Self Assessment
 
 During my time at SNHU, I got to experience a wide variety of computer science topics ranging from building web apps, interacting with databases, the software development lifecycle using waterfall and agile methodologies, automation with CI/CD pipelines, client & server development, and the algorithms that power everything under the hood.
-As a software engineer, I was already very familiar with these topics from my day to day work. By doing the coursework as well as building this ePortfolio, I was able to strengthen my knowledge of these topics and put the lessons I learned to use in a real world scenario in one of my own projects. They made me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science. Some examples include:
+As a software engineer, I was already very familiar with these topics from my day to day work. By doing the coursework as well as building this ePortfolio, I was able to strengthen my knowledge of these topics and put the lessons I learned to use in a real world scenario in one of my own projects. Some examples of the changes that will be shown in the portfolio include:
 
 - Following industry standard best practices when working in a team such as requiring branch protection on the `main` branch and at least one approval from another team member before being able to merge new changes
 - Having separate environments and infrastructure to test those new changes in a `production-like` environment before they actually go live to the public
 - Implementing a CI/CD pipeline that automatically deploys to each environment saving engineer time and preventing mistakes with manual processes and scripts
 - Allowing stakeholders to view the progress of desired features and bugfixes by documenting them publicly on GitHub
-- Evaluating different databases that were most appropriate for my use case and the desired performance SLAs
+- Evaluating tradeoffs between different databases that were most appropriate for my use case and the desired performance SLAs
 - Following security best practices by storing environment secrets outside of the codebase that can be swapped without a code change
-- Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers
+- Limiting database connections to our server instances so they are not openly available to the public
+- Rearchitecting a core feature to use a more efficient data structure (doubly linked list) which would remove a massive limitation for our customers
+- Using a hash map with a custom sorting algorithm to efficiently sort the doubly linked list in O(n) time instead of O(n<sup>2</sup>)
+- Adding type safety wherever possible to prevent accessing undefined properties in code and leveraging built in IDE tools like auto complete suggestions
 
+As I progress throughout my career, I would like to be knowledgeable in a variety of areas with a specialization in cloud technologies like Amazon Web Services. The changes made in this ePortfolio reflect my professional goals by making me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science and the software application development lifecycle as well as my desired future specialization in cloud computing.
+
+--
+by touching on a broad spectrum of changes in the application lifecycle as well as deployment on AWS.
 A. Discuss how completing your coursework throughout the program and developing the ePortfolio has helped showcased your strengths and
-shape your professional goals and values and prepared you to either enter or become more employable in the computer science field. Use
-specific examples from your program and include examples outside of the artifacts included in your ePortfolio. Please address following topics:
+shape your professional goals and values and prepared you to either enter or become more employable in the computer science field.
+
 collaborating in a team environment, communicating to stakeholders, data structures and algorithms, software engineering and database,
 and security. Note: This should function as an overall introduction to your skills and you will become more specific relative to the included
 artifacts in the next section.
