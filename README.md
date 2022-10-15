@@ -1,16 +1,59 @@
 ---
 layout: home
-title: Jose Valerio SNHU Capstone
+title: Jose Valerio - SNHU CS-499 Capstone
 permalink: /
 ---
 
-Module 1 - Theme Selection
+## Professional Self Assessment
 
-## Demo
+A. Discuss how completing your coursework throughout the program and developing the ePortfolio has helped showcased your strengths and
+shape your professional goals and values and prepared you to either enter or become more employable in the computer science field. Use
+specific examples from your program and include examples outside of the artifacts included in your ePortfolio. Please address following topics:
+collaborating in a team environment, communicating to stakeholders, data structures and algorithms, software engineering and database,
+and security. Note: This should function as an overall introduction to your skills and you will become more specific relative to the included
+artifacts in the next section.
 
-Live demo on Github Pages: [https://sighingnow.github.io/jekyll-gitbook](https://sighingnow.github.io/jekyll-gitbook)
+B. Summarize/introduce how your artifacts fit together and inform the portfolio as a whole; this will help demonstrate the full range of your
+computer science talents and abilities? This section should introduce your audience to the technical artifacts that will follow the professional
+self-assessment.
 
-[![Jekyll Themes](https://img.shields.io/badge/featured%20on-JekyllThemes-red.svg)](https://jekyll-themes.com/jekyll-gitbook/)
+## Code Review
+
+At the start of this course, I created a code review going over my enhancedments
+
+https://www.youtube.com/watch?v=k08ZBwK6sBw
+
+## Enhanced Artifact - Plutomi
+
+> Note that we are using this artifact across categories
+
+Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
+Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
+Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices
+Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals
+Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.
+
+## Narratives
+
+• Develop an accompanying narrative that explains why you selected this artifact and the skills showcased in enhancing it.
+• Submit the artifact and narrative for instructor review and comments.
+You will then have the opportunity to incorporate these comments and polish the artifact before publishing it in the ePortfolio.
+The narrative should focus less on the actual creation of each artifact and more on the learning that happened through the creation of the artifact.
+
+. Submit in the course a written narrative about your professional journey---you can also share this on GitHub, but it must align to how you quantifiably (not I think, I feel but this aligns with this standards, best practice, security practice etc.) REACHED the five course outcomes through your enhancements:
+
+Course Outcome 1: You EmployED strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science by completing the following enhancements****\_****
+
+Course Outcome 2: You DesignED, DevelopED, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts by completing the following enhancements****\_****
+
+Course Outcome 3: You DesignED and EvaluateED computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices by completing the following enhancements****\_****
+
+Course Outcome 4: You DemonstrateD an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals by completing the following enhancements****\_****
+
+Course Outcome 5: You DevelopED a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources by completing the following enhancements****\_****
+
+Your portfolio must show what you can do. To say I know Python is your opinion, but to showcase a Python program with best practices, and support that with a written narrative for example carries a lot more evidence
+TODO best practices like using Typescript and types everywhere
 
 ## Why Jekyll with GitBook
 
@@ -35,10 +78,6 @@ You can introduce this jekyll theme into your own site by either
 - [Fork][3] this repository and add your markdown posts to the `_posts` folder.
 - Use as a remote theme in your [`_config.yml`][14](just like what we do for this
   site itself),
-
-```yaml
-remote_theme: sighingnow/jekyll-gitbook
-```
 
 ### Deploy Locally with Jekyll Serve
 
