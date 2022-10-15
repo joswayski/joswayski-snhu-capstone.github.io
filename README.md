@@ -11,13 +11,18 @@ permalink: /
 3. [Plutomi Artifact & Enhancements](#plutomi-artifact-and-enhancements)
 4. [Narratives](#narratives)
 
-## --
-
-## --
-
---
-
 ## Professional Self Assessment
+
+During my time at SNHU, I got to experience a wide variety of computer science topics ranging from building web apps, interacting with databases, the software development lifecycle using waterfall and agile methodologies, automation with CI/CD pipelines, client & server development, and the algorithms that power everything under the hood.
+As a software engineer, I was already very familiar with these topics from my day to day work. By doing the coursework as well as building this ePortfolio, I was able to strengthen my knowledge of these topics and put the lessons I learned to use in a real world scenario in one of my own projects. They made me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science. Some examples include:
+
+- Following industry standard best practices when working in a team such as requiring branch protection on the `main` branch and at least one approval from another team member before being able to merge new changes
+- Having separate environments and infrastructure to test those new changes in a `production-like` environment before they actually go live to the public
+- Implementing a CI/CD pipeline that automatically deploys to each environment saving engineer time and preventing mistakes with manual processes and scripts
+- Allowing stakeholders to view the progress of desired features and bugfixes by documenting them publicly on GitHub
+- Evaluating different databases that were most appropriate for my use case and the desired performance SLAs
+- Following security best practices by storing environment secrets outside of the codebase that can be swapped without a code change
+- Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers
 
 A. Discuss how completing your coursework throughout the program and developing the ePortfolio has helped showcased your strengths and
 shape your professional goals and values and prepared you to either enter or become more employable in the computer science field. Use
