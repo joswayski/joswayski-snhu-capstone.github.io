@@ -213,7 +213,7 @@ You could have a scenario where each subsequent traversal has the next stage at 
 
    ![usnrt](/assets/unsrt.png)
 
-This greatly improves the performance at scale due to the minimal array traversals that we have to make. Now back to re-ordering stages. Say we have three stages in order: 1, 2, and 3. Say we moved stage 1 to be in the middle between stages 2 and 3. What has _changed_?
+This greatly improves the performance at scale due to the minimal array traversals that we have to make. Now back to re-ordering stages. Say we have three stages in order: 1, 2, and 3. If we moved stage 1 to be in the middle between stages 2 and 3, what has _changed_?
 
 - Stage 1's PreviousStage is now Stage 2
 - Stage 1's NextStage is now Stage 3
@@ -246,6 +246,8 @@ You can see how we can bucket the 16 different edge cases above into four basic 
 I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board. Here is the code for checking the first two conditions, and the same can be done on the _after we moved_ checks. I recommend [viewing the code directly](https://github.com/plutomi/plutomi/blob/main/utils/sortStages.ts) for clarity.
 ![prev](/assets/prev.png)
 ![prev2](/assets/prev2.png)
+
+### Databases
 
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
