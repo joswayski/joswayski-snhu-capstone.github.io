@@ -60,6 +60,10 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
   ![envsecrets](/assets/env_secrets.png)
 
 - Pull Request Reviews And Code Owners
+
+  I implemented branch protection on the repository to prevent anyone, including myself, from accidentally pushing into the `main` branch and triggering an unintended deploy. All changes made to the project now have to come from a pull request and must be approved by a `CODEOWNER`, in this case me. When someone makes a pull request, they will now see the following:
+  ![prreviews](/assets/pr_reviews_code_owners.png)
+
 - TypeSafety
 - Public Issues
 
