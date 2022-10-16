@@ -70,6 +70,11 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
   ![types](/assets/types.png)
   ![types2](/assets/tsafety.png)
 
+- JSDoc
+
+  All entities now have descriptions for the indexed target array (explained a bit further down) so developers know what properties they can index on
+  ![jsdoc](/assets/jsdoc.png)
+
 - Public Issues
 
   All enhancements were publicly documented in GitHub. Anyone could see what I was working on and my planned enhancements, and if there were any stakeholders they could be informed on what is being prioritized.
