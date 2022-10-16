@@ -326,13 +326,41 @@ As a software engineer, I was already very familiar with these topics from my da
 
     <p><img src="/assets/doubly_linked_list.png" alt="doubly" /></p>
 
-    <p>This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you’ll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes, which I will talk on more on below in the <a href="#narratives">Narratives</a> section.</p>
+    <p>This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you’ll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes. I will talk more on this below in the <a href="#narratives">Narratives</a> section along with the sorting algorithm to traverse this doubly linked list and the algorithm to check for the new <code class="language-plaintext highlighter-rouge">Next</code> and <code class="language-plaintext highlighter-rouge">Previous</code> stages when changing the stage order.</p>
   </li>
 </ul>
 
 <h3 id="databases">Databases</h3>
 
-<p>-</p>
+<ul>
+  <li>
+    <p>DynamoDB Limitations</p>
+
+    <ol>
+      <li>
+        <p>No adhoc queries</p>
+
+        <p>This NoSQL database by Amazon is pretty incredible, boasting over <a href="https://aws.amazon.com/blogs/aws/amazon-prime-day-2022-aws-for-the-win/">100 million requests per second</a> during their 2022 prime day with single digit millisecond responses. This performance comes at the cost of losing adhoc querying capabalities. Let’s take a look at an example. Below is an <code class="language-plaintext highlighter-rouge">Opening</code> entity in Dynamo:</p>
+
+        <p><img src="/assets/dynamoOpening.png" alt="dmop" /></p>
+
+        <p>In Dynamo, you would only be allowed to query with the <code class="language-plaintext highlighter-rouge">PK</code> and <code class="language-plaintext highlighter-rouge">GSI1PK</code> values, and nothing else. These are partition keys (or shard keys depending on who you ask) which allow Dynamo to split the data up across many 10gb storage nodes for what is essentially a hash table but with SSDs. It knows exactly where to go to find your item, because it’s broken up by these keys and it doesn’t have to scan all of the items in the table.
+The two keys I highlighted give you the access patterns of <code class="language-plaintext highlighter-rouge">Give me this specific opening by this ID</code> with the PK and <code class="language-plaintext highlighter-rouge">Give me all of the openings in this org</code> with the GSI1PK keys. You would then need to do any other type of filtering at your app layer.</p>
+      </li>
+      <li>
+        <p>The 400kb item limit</p>
+
+        <p>This was mentioned briefly up above, but Dynamo has an item size limit of 400kb. This is perfectly fine for most practical purposes, but if you would like to embed more data into your item this could fill up fast. I wanted Plutomi to support a virtually unlimited number of stages in an opening and knew someone would hit this limit so it was something I needed to work around.</p>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<p>Mongo Upsides</p>
+
+<p>Ad hoc querying
+Sharding
+Target index arrays!!</p>
 
 <p>This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.</p>
 
@@ -639,7 +667,7 @@ a <code class="language-plaintext highlighter-rouge">cover</code> field to the p
     },
     "gitbook": {
         "version": "3.2.3",
-        "time": "2022-10-15 21:42:16 -0400"
+        "time": "2022-10-15 22:12:59 -0400"
     },
     "basePath": "/joswayski-snhu-capstone.github.io",
     "book": {

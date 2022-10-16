@@ -91,11 +91,30 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
   ![doubly](/assets/doubly_linked_list.png)
 
-  This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes, which I will talk on more on below in the [Narratives](#narratives) section.
+  This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes. I will talk more on this below in the [Narratives](#narratives) section along with the sorting algorithm to traverse this doubly linked list and the algorithm to check for the new `Next` and `Previous` stages when changing the stage order.
 
 ### Databases
 
--
+- DynamoDB Limitations
+
+  1. No adhoc queries
+
+     This NoSQL database by Amazon is pretty incredible, boasting over [100 million requests per second](https://aws.amazon.com/blogs/aws/amazon-prime-day-2022-aws-for-the-win/) during their 2022 prime day with single digit millisecond responses. This performance comes at the cost of losing adhoc querying capabalities. Let's take a look at an example. Below is an `Opening` entity in Dynamo:
+
+     ![dmop](/assets/dynamoOpening.png)
+
+     In Dynamo, you would only be allowed to query with the `PK` and `GSI1PK` values, and nothing else. These are partition keys (or shard keys depending on who you ask) which allow Dynamo to split the data up across many 10gb storage nodes for what is essentially a hash table but with SSDs. It knows exactly where to go to find your item, because it's broken up by these keys and it doesn't have to scan all of the items in the table.
+     The two keys I highlighted give you the access patterns of `Give me this specific opening by this ID` with the PK and `Give me all of the openings in this org` with the GSI1PK keys. You would then need to do any other type of filtering at your app layer.
+
+  2. The 400kb item limit
+
+     This was mentioned briefly up above, but Dynamo has an item size limit of 400kb. This is perfectly fine for most practical purposes, but if you would like to embed more data into your item this could fill up fast. I wanted Plutomi to support a virtually unlimited number of stages in an opening and knew someone would hit this limit so it was something I needed to work around.
+
+Mongo Upsides
+
+Ad hoc querying
+Sharding
+Target index arrays!!
 
 This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
