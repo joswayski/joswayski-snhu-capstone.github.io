@@ -28,7 +28,7 @@ As a software engineer, I was already very familiar with these topics from my da
 - Allowing stakeholders to view the progress of desired features and bugfixes by documenting them publicly on GitHub
 - Evaluating tradeoffs between different databases that were most appropriate for my use case and the desired performance SLAs
 - Following security best practices by storing environment secrets outside of the codebase that can be swapped without a code change
-- Limiting database connections to our server instances so they are not openly available to the public
+- Limiting our database to only accept connections from our server instances so they are not openly available to the public
 - Practicing tenant data isolation by embedding each tenant ID into the queryable index of each entity
 - Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers
 - Using a hash map with a custom sorting algorithm to efficiently sort the data structure above in O(n) time instead of O(n<sup>2</sup>)
