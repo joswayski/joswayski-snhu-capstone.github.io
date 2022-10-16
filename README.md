@@ -138,11 +138,13 @@ I also have `staging` and `production` databases depending on the deployment env
 
 ![mongo_envs](/assets/mongo_envs.png)
 
-My servers are connecting to the database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting who can connect using IP addresses:
+My servers are connecting to the database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting who can connect to the IP addresses of my servers:
 
 ![mongo_ip](/assets/mongo_ip.png)
 
 Another bonus is that the MongoDB item size limit is 40x higher than Dynamo's, if I ever do want to embed a bunch of nested documents together.
+
+## Narratives
 
 This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
@@ -151,8 +153,6 @@ Design, develop, and deliver professional-quality oral, written, and visual comm
 Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices
 Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals
 Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.
-
-## Narratives
 
 > A. Briefly describe the artifact. What is it? When was it created?
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
