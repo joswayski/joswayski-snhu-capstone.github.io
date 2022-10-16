@@ -249,6 +249,11 @@ I added comments to the code snippets below so anyone else can picture these sce
 
 ### Databases
 
+As stated above, the main reason for my switch from DynamoDB to MongoDB was for the adhoc querying functionality that was badly needed to support future use cases. We still get the same great performance of Dynamo, although with a bit more overhead as there are actual servers to worry about now and _it is_ a bit pricier. The APIs of each are a LOT different. There are no good ORMs for Dynamo, you essentially have to make your own. Type safety is an afterthought, and god forbid you use one of the [_many_ reserved words](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html) as a property name.
+We are limiting access to the database via IPs, and embedding a tenant ID right into our queries and indexes for performance and data isolation
+
+## Outcomes
+
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
 > C. Reflect on the process of enhancing and/or modifying the artifact. What did you learn as you were creating it and improving it? What
@@ -264,11 +269,7 @@ The narrative should focus less on the actual creation of each artifact and more
 
 ## Outcomes
 
-Course Outcome 1: You EmployED strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science by completing the following enhancements\***\*\_\*\***
-
-- Issues in Github
-- Pull Requests
-- Staging environments, waiting ofr manual approval to deploy
+1. By having public issues on GitHub for everyone to see, comment, edit and collaborate on, adding `main` branch protection rules to ensure that all changes are reviewed as part of a team, and creating separate environments specifically for `staging` that require a manual approval to push to `production`, I employed strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
 
 Course Outcome 2: You DesignED, DevelopED, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts by completing the following enhancements\***\*\_\*\***
 
