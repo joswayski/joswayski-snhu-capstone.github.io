@@ -1,4 +1,4 @@
-## Table of Contents
+<!-- ## Table of Contents -->
 
 1. [Professional Self Assessment](#professional-self-assessment)
 2. [Code Review](#code-review)
