@@ -1,9 +1,3 @@
----
-layout: home
-title: Jose Valerio - SNHU CS-499 Capstone
-permalink: /
----
-
 ## Table of Contents
 
 1. [Professional Self Assessment](#professional-self-assessment)
@@ -53,36 +47,36 @@ At the start of CS-499 at SNHU, I created a code review going over my planned en
 - GitHub Actions CI/CD
 
   I implemented a continuous deployment pipeline using GitHub actions that deploys to Amazon Web Services whenever there is a new push into the `main` branch of the repository on GitHub. This was done by creating a `deploy.yaml` file in the `.github/workflows` directory with specific commands I would like it to run in order. There is also an option to manually run the workflow from the GUI if needed by providing the environment you would like to deploy to.
-  ![githubActionsInput](/assets/images/gh_actions_input.png)
-  ![commands](/assets/images/commands.png)
+  ![githubActionsInput](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/gh_actions_input.png)
+  ![commands](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/commands.png)
 
 - Environment Secrets
 
   In the action itself, you can supply environment variables to each command with a `env` property. This allows us to change environment variables through GitHub's GUI without requiring a code change. We can manually re-deploy to have these changes take effect. We also have separate secrets per environment, one for `staging` and one for `production`.
 
-  ![envaction](/assets/images/env_action.png)
-  ![envsecrets](/assets/images/env_secrets.png)
+  ![envaction](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/env_action.png)
+  ![envsecrets](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/env_secrets.png)
 
 - Pull Request Reviews And Code Owners
 
   I implemented branch protection on the repository to prevent anyone, including myself, from accidentally pushing into the `main` branch and triggering an unintended deploy. All changes made to the project now have to come from a pull request and must be approved by a `CODEOWNER`, in this case me. When someone makes a pull request, they will now see the following:
-  ![prreviews](/assets/images/pr_reviews_code_owners.png)
+  ![prreviews](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/pr_reviews_code_owners.png)
 
 - Type Safety
 
   All entities in the codebase now have types to protect developers from accessing properties that do not exist on the entity in code and causing runtime errors.
-  ![types](/assets/images/types.png)
-  ![types2](/assets/images/tsafety.png)
+  ![types](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/types.png)
+  ![types2](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/tsafety.png)
 
 - JSDoc
 
   All entities now have descriptions for the indexed target array (explained a bit further down) so developers know what properties they can index on
-  ![jsdoc](/assets/images/jsdoc.png)
+  ![jsdoc](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/jsdoc.png)
 
 - Public Issues
 
   All enhancements were publicly documented in GitHub. Anyone could see what I was working on and my planned enhancements, and if there were any stakeholders they could be informed on what is being prioritized.
-  ![issues](/assets/images/issues.png)
+  ![issues](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/issues.png)
 
 ### Algorithms and Data structures
 
@@ -90,7 +84,7 @@ At the start of CS-499 at SNHU, I created a code review going over my planned en
 
   Since Plutomi is an applicant tracking system, we are allowing our users to create `Openings` in their organization that people can apply to. These openings have `Stages` that can be re-arranged whenever the user wants. We were storing the order of these stages on the parent entity (the opening) as an array of stage IDs:
 
-  ![stageorder](/assets/images/stage_order.png)
+  ![stageorder](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/stage_order.png)
 
   An issue arises when a user wants to have hundreds, or even thousands of stages in an opening. We would need to retrieve all of these stage IDs _every time we retrieved the parent opening_ and on top of that, we now have a theoretical max limit on the number of stages that an opening could have because the opening item in the database would get too big once it crossed a certain threshold (400kb in the case of DynamoDB).
 
@@ -98,7 +92,7 @@ At the start of CS-499 at SNHU, I created a code review going over my planned en
 
   Instead of storing stage IDs on the parent, I used a doubly linked list on the stage itself. The stage is now in charge of keeping track of the stage that came before it, and the stage that comes after:
 
-  ![doubly](/assets/images/doubly_linked_list.png)
+  ![doubly](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/doubly_linked_list.png)
 
   This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes. I will talk more on this below in the [Narratives](#narratives) section along with the sorting algorithm to traverse this doubly linked list very fast.
 
@@ -110,7 +104,7 @@ For the database section of this ePortfolio, I migrated Plutomi's database (Dyna
 
    DynamoDB is pretty incredible, boasting over [100 million requests per second](https://aws.amazon.com/blogs/aws/amazon-prime-day-2022-aws-for-the-win/) during their 2022 prime day with single digit millisecond responses. This performance comes at the cost of losing adhoc querying capabilities. Let's take a look at an example. Below is an `Opening` entity in Dynamo:
 
-   ![dmop](/assets/images/dynamoOpening.png)
+   ![dmop](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/dynamoOpening.png)
 
    In Dynamo, you would only be allowed to query with the `PK` and `GSI1PK` values, and nothing else. These are partition keys (or shard keys depending on who you ask) which allow Dynamo to split the data up across many 10gb storage nodes for what is essentially a hash table but with SSDs. It knows exactly where to go to find your item, because it's broken up by these keys and it doesn't have to scan all of the items in the table.
    The two keys I highlighted give you the access patterns of `Give me this specific opening by this ID` with the PK and `Give me all of the openings in this org` with the GSI1PK keys. You would then need to do any other type of filtering at your app layer. As I talked to more and more potential customers, they had access patterns that I did not envision which would negate the performance benefits of having the access patterns tightly coupled with the data model, or they simply weren't possible due to the missing adhoc support.
@@ -139,17 +133,17 @@ As soon as you start introducing a `where` clause like you would in a relational
 
 MongoDB does not force you to use an index lookup allowing for adhoc queries. If you do use indexes though, you can index _arrays_ and _json_ allowing for multiple properties indexed at once like the picture below. It is common practice to name this property something inconspicuous like `target`, as it's storing pointers to other documents in separate collections or `Enum` values. Below is an example of an Opening in MongoDB, with it's `Org` and `OpeningState` indexed in this target array.
 
-![mongo_opening](/assets/images/mongo_opening.png)
+![mongo_opening](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/mongo_opening.png)
 
 You might have noticed that a lot of entities have an `OrgId` built in to one of these indexes. This not only allows for quicker queries when searching as the query planner will use this index to filter out documents _not_ in the org first, but it serves as an extra layer of security due to explicit tenant isolation. This `OrgId` comes from the user's session, so by default, they will _only_ have access to Openings, Stages, Applicants, etc. that are in their org. It is _impossible_ for them to get access to another tenant's information by doing some sort of SQL injection.
 
 I also have `staging` and `production` databases depending on the deployment environment of the GitHub action:
 
-![mongo_envs](/assets/images/mongo_envs.png)
+![mongo_envs](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/mongo_envs.png)
 
 My servers are connecting to the database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting the connections to only come form the IP addresses of my servers:
 
-![mongo_ip](/assets/images/mongo_ip.png)
+![mongo_ip](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/mongo_ip.png)
 
 Another bonus is that the MongoDB item size limit is 40x higher than Dynamo's so we have a lot of flexibility there for any use case that might arise.
 
@@ -190,14 +184,14 @@ This was without a doubt the most fun and challenging part of all of the enhance
 2.  When adding a stage, by default, we add it to the end. We simply get the last stage using `allStages[allStages.length - 1]?.id ?? undefined` to get the last stage's ID, set it as the `PreviousStage`, and `NextStage` is undefined. The same method can be used to put a stage anywhere in the middle, just find the previous and next stages respectively.
 
 3.  Reordering Stages
-    ![reordering](/assets/images/re_ordering.gif)
+    ![reordering](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/re_ordering.gif)
 
     This is a _must have_ feature for Plutomi. When stage IDs were stored in an array in the opening, reordering them was extremely easy as it was moving an array item down or up a few places. With doubly linked lists, things get very difficult. First, you have to account for all of the edge cases that you may encounter... and there are 16 in total:
 
-    ![sc14](/assets/images/sc14.jpg)
-    ![sc58](/assets/images/sc58.jpg)
-    ![sc912](/assets/images/sc912.jpg)
-    ![sc1316](/assets/images/sc1316.jpg)
+    ![sc14](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/sc14.jpg)
+    ![sc58](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/sc58.jpg)
+    ![sc912](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/sc912.jpg)
+    ![sc1316](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/sc1316.jpg)
 
     Writing code to handle each of these specific edge cases would get repetitive extremely quickly, so I implemented a way to check for scenarios that repeat themselves and essentially group the updates when they overlap on a stage. But first, to even get to this point, we need our stages to be sorted. If we're going to be re-ordering stages, we need to know the correct order before we move our stages around.
 
@@ -213,7 +207,7 @@ You could have a scenario where each subsequent traversal has the next stage at 
 2. If we found the first stage, we push it into an array called `sortedStages`
 3. Once we've added all of the stages to our hash map, we need to recursively loop once more starting with the first stage from earlier, getting the nextStage which is now a O(1) query in our hash map, and push it into the sorted stages array.
 
-   ![usnrt](/assets/images/unsrt.png)
+   ![usnrt](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/unsrt.png)
 
 This greatly improves the performance at scale due to the minimal array traversals that we have to make. Now back to re-ordering stages. Say we have three stages in order: 1, 2, and 3. If we moved stage 1 to be in the middle between stages 2 and 3, what has _changed_?
 
@@ -246,8 +240,8 @@ You can see how we can bucket the 16 different edge cases above into four basic 
    - Needs its NextStage updated? Y/N
 
 I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board. Here is the code for checking the first two conditions, and the same can be done on the _after we moved_ checks. I recommend [viewing the code directly](https://github.com/plutomi/plutomi/blob/main/Controllers/Stages/updateStage.ts#L88-L331) for clarity.
-![prev](/assets/images/prev.png)
-![prev2](/assets/images/prev2.png)
+![prev](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/prev.png)
+![prev2](/Users/josevalerio/Documents/GitHub/joswayski-snhu-capstone.github.io/assets/images/prev2.png)
 
 ### Databases
 
