@@ -192,7 +192,7 @@ This was without a doubt the most fun and challenging part of all of the enhance
 3.  Reordering Stages
     ![reordering](/assets/images/re_ordering.gif)
 
-    This is a _must have_ feature case for Plutomi. When stage IDs were stored in an array in the opening, reordering them was extremely easy as it was moving an array item down or up a few places. With doubly linked lists, things get very difficult. First, you have to account for all of the edge cases that you may encounter... and there are 16 in total:
+    This is a _must have_ feature for Plutomi. When stage IDs were stored in an array in the opening, reordering them was extremely easy as it was moving an array item down or up a few places. With doubly linked lists, things get very difficult. First, you have to account for all of the edge cases that you may encounter... and there are 16 in total:
 
     ![sc14](/assets/images/sc14.jpg)
     ![sc58](/assets/images/sc58.jpg)
