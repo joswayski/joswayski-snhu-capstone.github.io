@@ -10,7 +10,11 @@ permalink: /
 2. [Code Review](#code-review)
 3. [Plutomi Artifact & Enhancements](#plutomi-artifact-and-enhancements)
 4. [Narratives](#narratives)
+
    - [Software Design and Engineering](#software-design-and-engineering-1)
+   - [Algorithms and Data Structures](#algorithms-and-data-structures-1)
+   - [Databases](#databases-1)
+
 5. [Outcomes](#outcomes)
 
 ## Professional Self Assessment
