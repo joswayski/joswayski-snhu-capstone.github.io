@@ -11,6 +11,7 @@ permalink: /
 3. [Plutomi Artifact & Enhancements](#plutomi-artifact-and-enhancements)
 4. [Narratives](#narratives)
    - [Software Design and Engineering](#software-design-and-engineering-1)
+5. [Outcomes](#outcomes)
 
 ## Professional Self Assessment
 
@@ -168,7 +169,29 @@ Since this project is open source, I eventually expect people to contribute to t
 
 Creating issues in the public repository also allows a crude road map for everyone to see the current state of the project as well as planned features, and if they are currently being worked on or not with the labels on them. It also helps to keep you organized since you can `link` issues with other issues if one depends on another by writing `Blocked by #147`, and GitHub will automatically create a comment on #147 saying that this issue referenced it. You can also close these issues automatically when a PR is merged by writing in the PR notes `Closes #147` or `Fixes #147`. This whole issue creation might seem tedious since I am the only one working on this at the moment, but it helps to treat it like a real job as it's not very different from my actual day to day job with all the formality.
 
-By adding types, I ensure that developers can leverage the features of their IDE for auto complete as well as preventing runtime errors since the app will not run if the types are mismatched. You cannot say that a newly created Opening has a `NextStage` property unless it is specifically defined in the entity. By adding JSDoc comments, any developer knows what each property type is as well as the accepted values without having to leave their codebase.
+By adding types, I ensure that developers can leverage the features of their IDE for auto complete as well as preventing runtime errors since the app will not run if the types are mismatched. You cannot say that a newly created Opening has a `NextStage` property unless it is specifically defined in the entity. By adding JSDoc comments, any developer knows what each property type is, as well as the accepted values without having to leave their codebase.
+
+Since our app is Dockerized, running inside a [Fargate](https://aws.amazon.com/fargate/) task, but also running a Nextjs app, environment variables were tricky. You essentially have three sets of environment variables:
+
+1. Those running in the GitHub action that can be passed to the `cdk deploy` command
+2. Those running in the Docker container for the app that has the API for things like database secrets or login link signatures
+3. Those running on the front end _only_, for Nextjs
+
+It was very painful figuring out what needed access to which credentials as I was using a package called `simple-env` which added type safety to environment variables, however it did not make them available at build time for our Nextjs app. This took a while to debug, and it was compounded by the fact that if I needed to test a deployment to see if it worked, I would have to wait the full 12 minutes for AWS to spin up all of the required infrastructure. I settled on creating my own environment variable Type, and sharing that with the front end for Nextjs. All being said, it is extremely helpful being able to change the variables from the GitHub GUI and not have to touch any code.
+
+#### Algorithms and Data Structures
+
+This was without a doubt the most fun and challenging part of all of the enhancements. By implementing the doubly linked list for stages in an opening mentioned above, this brought with it it's own set of problems.
+
+1.  When deleting a stage, we now need to update the previous stage's `NextStage` property to be the deleted stage's `NextStage` property AND the next stage's `PreviousStage` property to be the deleted stage's `PreviousStage` property. Two `if` checks, not too bad!
+
+2.  When adding a stage, by default, we add it to the end. We simply get the last stage using `allStages[allStages.length - 1]?.id ?? undefined` to get the last stage's ID, set it as the `PreviousStage`, and `NextStage` is undefined. The same method can be used to put a stage anywhere in the middle, just find the previous and next stages respectively.
+
+3.  Reordering Stages
+    ![reordering](/assets/re_ordering.gif)
+
+TODO ADD GIF!!!!!!!!!!!!!
+And ohh my god the amount of edge cases on this one ... 16.
 
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
@@ -182,6 +205,8 @@ By adding types, I ensure that developers can leverage the features of their IDE
 The narrative should focus less on the actual creation of each artifact and more on the learning that happened through the creation of the artifact.
 
 . Submit in the course a written narrative about your professional journey---you can also share this on GitHub, but it must align to how you quantifiably (not I think, I feel but this aligns with this standards, best practice, security practice etc.) REACHED the five course outcomes through your enhancements:
+
+## Outcomes
 
 Course Outcome 1: You EmployED strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science by completing the following enhancements\***\*\_\*\***
 
