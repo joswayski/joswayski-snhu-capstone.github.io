@@ -40,9 +40,7 @@ In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [o
 
 ## Code Review
 
-At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed here:
-
-https://www.youtube.com/watch?v=k08ZBwK6sBw
+At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed [here on youtube](https://www.youtube.com/watch?v=k08ZBwK6sBw)
 
 ## Plutomi Artifact and Enhancements
 
@@ -56,7 +54,7 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
   I implemented a continuous deployment pipeline using GitHub actions that deploys to Amazon Web Services whenever there is a new push into the `main` branch of the repository on GitHub. This was done by creating a `deploy.yaml` file in the `.github/workflows` directory with specific commands I would like it to run in order. There is also an option to manually run the workflow from the GUI if needed by providing the environment you would like to deploy to.
   ![githubActionsInput](/assets/images/gh_actions_input.png)
-  ![commands](/assets/images/images/commands.png)
+  ![commands](/assets/images/commands.png)
 
 - Environment Secrets
 
