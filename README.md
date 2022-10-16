@@ -159,7 +159,7 @@ It would have really benefited us to have an open source solution that our devel
 
 The reason it was chosen for this ePortfolio, as well as for each category of improvement, is because this is a very large project that had room for improvement in every category due to hindsight of past design decisions, customer feedback, hitting limits of our own due to our infrastructure, and many manual steps that should have been automated from the start.
 
-#### Software Design and Engineering
+### Software Design and Engineering
 
 Whenever I made a change to the project, I would make a pull request, review it myself, merge and deploy. The deployment step was a manual process: I would run the `cdk deploy` command with production credentials from my laptop and pray for the best. This had many downsides with the obvious one being having to manually do this every time I wanted to make a change, but it was also extremely prone to failure. If my laptop went to sleep, the deployment would crash. There was no `production-like` environment to actually test the changes, it was only `development` or live code that people are using. Some tools that _I was using_ also behave very differently when the `NODE_ENV` is in `development` or `production` like Nextjs, and I had no real way to test this either. I knew I had to automate this somehow and luckily I had experience with GitHub actions from my job and was able to quickly setup a deployment script and this process was automated relatively painlessly.
 
@@ -179,7 +179,7 @@ Since our app is Dockerized, running inside a [Fargate](https://aws.amazon.com/f
 
 It was very painful figuring out what needed access to which credentials as I was using a package called `simple-env` which added type safety to environment variables, however it did not make them available at build time for our Nextjs app. This took a while to debug, and it was compounded by the fact that if I needed to test a deployment to see if it worked, I would have to wait the full 12 minutes for AWS to spin up all of the required infrastructure. I settled on creating my own environment variable Type, and sharing that with the front end for Nextjs. All being said, it is extremely helpful being able to change the variables from the GitHub GUI and not have to touch any code.
 
-#### Algorithms and Data Structures
+### Algorithms and Data Structures
 
 This was without a doubt the most fun and challenging part of all of the enhancements. By implementing the doubly linked list for stages in an opening mentioned above, this brought with it it's own set of problems.
 
@@ -190,8 +190,14 @@ This was without a doubt the most fun and challenging part of all of the enhance
 3.  Reordering Stages
     ![reordering](/assets/re_ordering.gif)
 
-TODO ADD GIF!!!!!!!!!!!!!
-And ohh my god the amount of edge cases on this one ... 16.
+    This is a _must have_ feature case for Plutomi. When stage IDs were stored in an array in the opening, reordering them was extremely easy as it was moving an array item down or up a few places. With doubly linked lists, things get very difficult. First, you have to account for all of the edge cases that you may encounter... and there are 16 in total:
+
+    ![sc14](/assets/sc14.jpg)
+    ![sc58](/assets/sc58.jpg)
+    ![sc912](/assets/sc912.jpg)
+    ![sc1316](/assets/sc1316.jpg)
+
+    Writing code to handle each of these specific edge cases would get repetitive extremely quickly, so I implemented a way to check for scenarios that repeat themselves and essentially bucketing the updates whe they happen. I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board:
 
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
