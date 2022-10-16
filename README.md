@@ -245,6 +245,7 @@ You can see how we can bucket the 16 different edge cases above into four basic 
 
 I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board. Here is the code for checking the first two conditions, and the same can be done on the _after we moved_ checks. I recommend [viewing the code directly](https://github.com/plutomi/plutomi/blob/main/utils/sortStages.ts) for clarity.
 ![prev](/assets/prev.png)
+![prev2](/assets/prev2.png)
 
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
