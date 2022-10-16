@@ -271,11 +271,7 @@ The narrative should focus less on the actual creation of each artifact and more
 
 1. By having public issues on GitHub for everyone to see, comment, edit and collaborate on, adding `main` branch protection rules to ensure that all changes are reviewed as part of a team, and creating separate environments specifically for `staging` that require a manual approval to push to `production`, I employed strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
 
-Course Outcome 2: You DesignED, DevelopED, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts by completing the following enhancements\***\*\_\*\***
-
-- Typescript enhancements
-- JSDOC
-- Issues in Github
+2. By adding type safety to entities as well as JSDoc comments which allow developers to see the inputs and outputs of a function right in their code editor, and creating publicly available issues on GitHub with outlined steps on what will it will take to accomplish each task, I dDesigned, developed, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
 
 Course Outcome 3: You DesignED and EvaluateED computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices by completing the following enhancements\***\*\_\*\***
 
