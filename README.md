@@ -110,11 +110,29 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
      This was mentioned briefly up above, but Dynamo has an item size limit of 400kb. This is perfectly fine for most practical purposes, but if you would like to embed more data into your item this could fill up fast. I wanted Plutomi to support a virtually unlimited number of stages in an opening and knew someone would hit this limit so it was something I needed to work around.
 
-Mongo Upsides
+- How MongoDB addresses these problems
 
-Ad hoc querying
-Sharding
-Target index arrays!!
+  Under the hood, MongoDB and DynamoDB are the same. They both have the same storage partitioning model, they both allow indexing of attributes for faster performance, and they're both extremely fast at these key value lookups which are most of the access patterns in Plutomi:
+
+      - Give me all of the users in my org
+      - Give me all of the webhooks in my org
+      - Give me all of the openings in an org
+      - Give me all of the stages in this opening
+      - Give me all of the evaluation rules in a stage
+      - Give me all of the questions in the stage
+      - Give me all of the applicants in a stage
+      - Give me an applicant by their ID
+      - Give me all of that applicant's answers to previous questions
+      - Give me all of the pending invites for my org
+      - Give me all of the webhooks in my org
+
+  As soon as you start introducing a `where` clause like you would in a relational database, DynamoDB breaks down. It _forces_ you to query using an index, but you also can't index every attribute as that will increase your storage costs dramatically.
+
+  MongoDB does not force you to use an index lookup allowing for adhoc queries, you can even index _arrays_ and _json_. This means that with ONE index, you can have multiple properties indexed at once like the picture below. It is common practice to name this property something inconspicuous like `target`, as it's storing pointers to all of the other documents in separate collections. Below is an example of an Opening in MongoDB, with it's `Org` and `OpeningState` indexed in this target array:
+
+  ![mongo_opening](/assets/mongo_opening.png)
+
+  It also helps that the MongoDB item size limit is 40x higher than Dynamo's, if you do want to embed a bunch of nested documents together.
 
 This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 

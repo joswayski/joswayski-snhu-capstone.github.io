@@ -354,13 +354,33 @@ The two keys I highlighted give you the access patterns of <code class="language
       </li>
     </ol>
   </li>
+  <li>
+    <p>How MongoDB addresses these problems</p>
+
+    <p>Under the hood, MongoDB and DynamoDB are the same. They both have the same storage partitioning model, they both allow indexing of attributes for faster performance, and they’re both extremely fast at these key value lookups which are most of the access patterns in Plutomi:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Give me all of the users in my org
+- Give me all of the webhooks in my org
+- Give me all of the openings in an org
+- Give me all of the stages in this opening
+- Give me all of the evaluation rules in a stage
+- Give me all of the questions in the stage
+- Give me all of the applicants in a stage
+- Give me an applicant by their ID
+- Give me all of that applicant's answers to previous questions
+- Give me all of the pending invites for my org
+- Give me all of the webhooks in my org
+</code></pre></div>    </div>
+
+    <p>As soon as you start introducing a <code class="language-plaintext highlighter-rouge">where</code> clause like you would in a relational database, DynamoDB breaks down. It <em>forces</em> you to query using an index, but you also can’t index every attribute as that will increase your storage costs dramatically.</p>
+
+    <p>MongoDB does not force you to use an index lookup allowing for adhoc queries, you can even index <em>arrays</em> and <em>json</em>. This means that with ONE index, you can have multiple properties indexed at once like the picture below. It is common practice to name this property something inconspicuous like <code class="language-plaintext highlighter-rouge">target</code>, as it’s storing pointers to all of the other documents in separate collections. Below is an example of an Opening in MongoDB, with it’s <code class="language-plaintext highlighter-rouge">Org</code> and <code class="language-plaintext highlighter-rouge">OpeningState</code> indexed in this target array:</p>
+
+    <p><img src="/assets/mongo_opening.png" alt="mongo_opening" /></p>
+
+    <p>It also helps that the MongoDB item size limit is 40x higher than Dynamo’s, if you do want to embed a bunch of nested documents together.</p>
+  </li>
 </ul>
-
-<p>Mongo Upsides</p>
-
-<p>Ad hoc querying
-Sharding
-Target index arrays!!</p>
 
 <p>This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.</p>
 
@@ -667,7 +687,7 @@ a <code class="language-plaintext highlighter-rouge">cover</code> field to the p
     },
     "gitbook": {
         "version": "3.2.3",
-        "time": "2022-10-15 22:12:59 -0400"
+        "time": "2022-10-15 22:32:34 -0400"
     },
     "basePath": "/joswayski-snhu-capstone.github.io",
     "book": {
