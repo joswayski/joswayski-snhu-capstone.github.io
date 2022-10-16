@@ -44,7 +44,7 @@ At the start of CS-499 at SNHU, I created a code review going over my planned en
 
 ## Plutomi Artifact and Enhancements
 
-> Note: I am using one artifact for all three categories of this ePortfolio. You can view the old and new versions of the artifact in the `old_plutomi` and `new_plutomi` directories, or viewing the [repository on github](https://github.com/plutomi/plutomi)
+> Note: I am using one artifact for all three categories of this ePortfolio. You can view the old and new versions of the artifact in the `old_plutomi` and `new_plutomi` directories, or viewing the [repository on GitHub](https://github.com/plutomi/plutomi)
 
 ### Software Design and Engineering
 
