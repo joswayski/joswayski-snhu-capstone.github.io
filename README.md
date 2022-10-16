@@ -197,7 +197,37 @@ This was without a doubt the most fun and challenging part of all of the enhance
     ![sc912](/assets/sc912.jpg)
     ![sc1316](/assets/sc1316.jpg)
 
-    Writing code to handle each of these specific edge cases would get repetitive extremely quickly, so I implemented a way to check for scenarios that repeat themselves and essentially bucketing the updates whe they happen. I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board:
+    Writing code to handle each of these specific edge cases would get repetitive extremely quickly, so I implemented a way to check for scenarios that repeat themselves and essentially group the updates when they overlap on an a stage. But first, to even get to this point, we need our stages to be sorted. If we're going to be re-ordering stages, we need to know the correct order before we move our stages around.
+
+    The `sortStages` algorithm that I implemented takes what would be a O(n<sup>2</sup>) sorting algorithm down to O(n). The naive approach for sorting a doubly linked list is to:
+
+    1. Find the first stage in the list by checking if the PreviousStage is undefined
+    2. Finding the second stage in the list by traversing the list again and finding the next stage that has the first stage's NextStage ID
+    3. Keep traversing the list until all stages are found and sorted
+
+    You could have a scenario where each subsequent traversal has the next stage at the end with horrible performance.
+
+The way I solved this is by:
+
+1. Traversing the list once. Push all stages that are _not_ the first stage into a hash map with the stage ID as the key and the stage itself as the value
+2. If we found the first stage, we push it into an array called `sortedStages`
+3. Once we've added all of the stages to our hash map, we need to recursively loop once more starting with the first stage from earlier, getting the nextStage which is now a O(1) query, and push it into the sorted stages array.
+
+   ![usnrt](/assets/unsrt.png)
+
+This greatly improves the performance at scale due to the minimal array traversals that we have to make. Now back to re-ordering stages.
+
+Say we have three stages in order: 1, 2, and 3. Say we moved stage 1 to be in the middle between stages 2 and 3. What has _changed_?
+
+    4.  Stage 1's PreviousStage is now Stage 2
+    5.  Stage 1's NextStage is now Stage 3
+    6.  Stage 2's PreviousStage is now undefined
+    7.  Stage 2's NextStage is now Stage 1
+    8.  Stage 3's PreviousStage is now Stage 2
+
+    ![eggs](/assets/eggs.png)
+
+    we moved I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board:
 
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
