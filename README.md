@@ -154,13 +154,16 @@ The reason it was chosen for this ePortfolio, as well as for each category of im
 
 #### Software Design and Engineering
 
-Whenever I had a change to the project, I would make a pull request, review it myself, merge and deploy. The deployment step was a manual process: I would run the `cdk deploy` command with production credentials from my laptop and pray for the best. This had many downsides with the obvious one being having to manually do this every time I wanted to make a change, but it was also extremely prone to failure. If my laptop went to sleep, the deployment would crash. There was no `production-like` environment to actually test the changes, it was only `development` or live code that people are using. Some tools that _I was using_ also behave very differently when the `NODE_ENV` is in `development` or `production` like Nextjs, and I had no real way to test this either. I knew I had to automate this somehow and luckily I had experience with GitHub actions from my job and was able to quickly setup a deployment script and this process was automated relatively painlessly.
+Whenever I made a change to the project, I would make a pull request, review it myself, merge and deploy. The deployment step was a manual process: I would run the `cdk deploy` command with production credentials from my laptop and pray for the best. This had many downsides with the obvious one being having to manually do this every time I wanted to make a change, but it was also extremely prone to failure. If my laptop went to sleep, the deployment would crash. There was no `production-like` environment to actually test the changes, it was only `development` or live code that people are using. Some tools that _I was using_ also behave very differently when the `NODE_ENV` is in `development` or `production` like Nextjs, and I had no real way to test this either. I knew I had to automate this somehow and luckily I had experience with GitHub actions from my job and was able to quickly setup a deployment script and this process was automated relatively painlessly.
+
+Another side effect of implementing the deployment pipeline above is that, if we ever want to create a new environment, this is as simple as changing the `DEPLOYMENT_ENVIRONMENT` variable in GitHub and re-deploying. If someone makes a pull request, I can have the same action kick off and deploy to an environment with their GitHub username suffixed by their branch name, giving them a playground to test their changes without them having to setup any infrastructure, or know how any of it works.
+
+Since this project is open source, I eventually expect people to contribute to the project in a small capacity. With the mandatory code reviews implemented using the `CODEOWNERS` feature of GitHub, I can ensure that any changes _must_ be reviewed by someone before being merged. If I'm ever away, I can add a member of the community who's contributed before as a CODEOWNER and they can take the reigns while I'm on vacation without giving them access to my GitHub account.
+
+Creating issues in the public repository also allows a crude road map for everyone to see the current state of the project as well as planned features, and if they are currently being worked on or not with the labels on them. It also helps to keep you organized since you can `link` issues with other issues if one depends on another by writing `Blocked by #147`, and GitHub will automatically create a comment on #147 saying that this issue referenced it. You can also close these issues automatically when a PR is merged by writing in the PR notes `Closes #147` or `Fixes #147`. This whole issue creation might seem tedious since I am the only one working on this at the moment, but it helps to treat it like a real job as it's not very different from my actual day to day job with all the formality.
 
 TODO for 2 the communications, typesafety JSDOCs
 
-This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
-
-> A. Briefly describe the artifact. What is it? When was it created?
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
 > C. Reflect on the process of enhancing and/or modifying the artifact. What did you learn as you were creating it and improving it? What
@@ -176,16 +179,45 @@ The narrative should focus less on the actual creation of each artifact and more
 
 Course Outcome 1: You EmployED strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science by completing the following enhancements\***\*\_\*\***
 
+- Issues in Github
+- Pull Requests
+- Staging environments, waiting ofr manual approval to deploy
+
 Course Outcome 2: You DesignED, DevelopED, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts by completing the following enhancements\***\*\_\*\***
+
+- Typescript enhancements
+- JSDOC
+- Issues in Github
 
 Course Outcome 3: You DesignED and EvaluateED computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices by completing the following enhancements\***\*\_\*\***
 
+- Doubly Linked List
+- Sorting
+- hash map
+
 Course Outcome 4: You DemonstrateD an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals by completing the following enhancements\***\*\_\*\***
+
+- CI/CD, shipping fast!
 
 Course Outcome 5: You DevelopED a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources by completing the following enhancements\***\*\_\*\***
 
-Your portfolio must show what you can do. To say I know Python is your opinion, but to showcase a Python program with best practices, and support that with a written narrative for example carries a lot more evidence
-TODO best practices like using Typescript and types everywhere
+- Tenant ID, IP locking to database, secrets outside of code base
+
+## --
+
+---
+
+- Following industry standard best practices when working in a team such as requiring branch protection on the `main` branch and at least one approval from another team member before being able to merge new changes
+- Having separate environments and infrastructure to test those new changes in a `production-like` environment before they actually go live to the public
+- Implementing a CI/CD pipeline that automatically deploys to each environment saving engineer time and preventing mistakes with manual processes and scripts
+- Allowing stakeholders to view the progress of desired features and bugfixes by documenting them publicly on GitHub
+- Evaluating tradeoffs between different databases that were most appropriate for my use case and the desired performance SLAs
+- Following security best practices by storing environment secrets outside of the codebase that can be swapped without a code change
+- Limiting database connections to our server instances so they are not openly available to the public
+- Practicing tenant data isolation by embedding each tenant ID into the queryable index of each entity
+- Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers
+- Using a hash map with a custom sorting algorithm to efficiently sort the data structure above in O(n) time instead of O(n<sup>2</sup>)
+- Adding type safety wherever possible to prevent accessing undefined properties in code using TypeScript as well as comments on each property with JSDoc to give context to the developer on how that property is used
 
 ## Why Jekyll with GitBook
 
