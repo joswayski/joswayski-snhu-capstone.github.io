@@ -254,21 +254,6 @@ We are limiting access to the database via IPs, and embedding a tenant ID right 
 
 ## Outcomes
 
-> B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
-> skills and abilities in software development?
-> C. Reflect on the process of enhancing and/or modifying the artifact. What did you learn as you were creating it and improving it? What
-> challenges did you face? How did you incorporate feedback as you made changes to the artifact? How was the artifact improved?
-
----
-
-• Develop an accompanying narrative that explains why you selected this artifact and the skills showcased in enhancing it.
-
-The narrative should focus less on the actual creation of each artifact and more on the learning that happened through the creation of the artifact.
-
-. Submit in the course a written narrative about your professional journey---you can also share this on GitHub, but it must align to how you quantifiably (not I think, I feel but this aligns with this standards, best practice, security practice etc.) REACHED the five course outcomes through your enhancements:
-
-## Outcomes
-
 1. By having public issues on GitHub for everyone to see, comment, edit and collaborate on, adding `main` branch protection rules to ensure that all changes are reviewed as part of a team, and creating separate environments specifically for `staging` that require a manual approval to push to `production`, I employed strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
 
 2. By adding type safety to entities as well as JSDoc comments which allow developers to see the inputs and outputs of a function right in their code editor, and creating publicly available issues on GitHub with outlined steps on what will it will take to accomplish each task, I designed, developed, and delivered professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
