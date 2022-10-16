@@ -64,8 +64,16 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
   I implemented branch protection on the repository to prevent anyone, including myself, from accidentally pushing into the `main` branch and triggering an unintended deploy. All changes made to the project now have to come from a pull request and must be approved by a `CODEOWNER`, in this case me. When someone makes a pull request, they will now see the following:
   ![prreviews](/assets/pr_reviews_code_owners.png)
 
-- TypeSafety
+- Type Safety
+
+  All entities in the codebase now have types to protect developers from accessing properties that do not exist on the entity in code and causing runtime errors.
+  ![types](/assets/types.png)
+  ![types2](/assets/tsafety.png)
+
 - Public Issues
+
+  All enhancements were publicly documented in GitHub. Anyone could see what I was working on and my planned enhancements, and if there were any stakeholders they could be informed on what is being prioritized.
+  ![issues](/assets/issues.png)
 
 ### Algorithms and Data structures
 
