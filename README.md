@@ -10,6 +10,7 @@ permalink: /
 2. [Code Review](#code-review)
 3. [Plutomi Artifact & Enhancements](#plutomi-artifact-and-enhancements)
 4. [Narratives](#narratives)
+   - [Software Design and Engineering](#software-design-and-engineering-1)
 
 ## Professional Self Assessment
 
@@ -167,7 +168,7 @@ Since this project is open source, I eventually expect people to contribute to t
 
 Creating issues in the public repository also allows a crude road map for everyone to see the current state of the project as well as planned features, and if they are currently being worked on or not with the labels on them. It also helps to keep you organized since you can `link` issues with other issues if one depends on another by writing `Blocked by #147`, and GitHub will automatically create a comment on #147 saying that this issue referenced it. You can also close these issues automatically when a PR is merged by writing in the PR notes `Closes #147` or `Fixes #147`. This whole issue creation might seem tedious since I am the only one working on this at the moment, but it helps to treat it like a real job as it's not very different from my actual day to day job with all the formality.
 
-TODO for 2 the communications, typesafety JSDOCs
+By adding types, I ensure that developers can leverage the features of their IDE for auto complete as well as preventing runtime errors since the app will not run if the types are mismatched. You cannot say that a newly created Opening has a `NextStage` property unless it is specifically defined in the entity. By adding JSDoc comments, any developer knows what each property type is as well as the accepted values without having to leave their codebase.
 
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
 > skills and abilities in software development?
