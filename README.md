@@ -14,7 +14,7 @@ permalink: /
 ## Professional Self Assessment
 
 During my time at SNHU, I got to experience a wide variety of computer science topics ranging from building web apps, interacting with databases, the software development lifecycle using waterfall and agile methodologies, automation with CI/CD pipelines, client & server development, and the algorithms that power everything under the hood.
-As a software engineer, I was already very familiar with these topics from my day to day work. By doing the coursework as well as building this ePortfolio, I was able to strengthen my knowledge of these topics and put the lessons I learned to use in a real world scenario in one of my own projects. Some examples of the changes that will be shown in the portfolio include:
+As a software engineer, I was already very familiar with these topics from my day to day work. By doing the coursework as well as building this ePortfolio, I was able to strengthen my knowledge of these topics and put the lessons I learned to use in a real world scenario in one of my own projects. Some examples of the changes that will be shown in this ePortfolio include:
 
 - Following industry standard best practices when working in a team such as requiring branch protection on the `main` branch and at least one approval from another team member before being able to merge new changes
 - Having separate environments and infrastructure to test those new changes in a `production-like` environment before they actually go live to the public
@@ -95,24 +95,24 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
 ### Databases
 
-- DynamoDB Limitations
+For the database section of this ePortfolio, I migrated Plutomi's database (DynamoDB) over to MongoDB. There are many tiny reasons that eventually cumulated to this decision, but there were two big ones that I have documented below.
 
-  1. No adhoc queries
+1. No adhoc queries
 
-     This NoSQL database by Amazon is pretty incredible, boasting over [100 million requests per second](https://aws.amazon.com/blogs/aws/amazon-prime-day-2022-aws-for-the-win/) during their 2022 prime day with single digit millisecond responses. This performance comes at the cost of losing adhoc querying capabalities. Let's take a look at an example. Below is an `Opening` entity in Dynamo:
+   DynamoDB pretty incredible, boasting over [100 million requests per second](https://aws.amazon.com/blogs/aws/amazon-prime-day-2022-aws-for-the-win/) during their 2022 prime day with single digit millisecond responses. This performance comes at the cost of losing adhoc querying capabilities. Let's take a look at an example. Below is an `Opening` entity in Dynamo:
 
-     ![dmop](/assets/dynamoOpening.png)
+   ![dmop](/assets/dynamoOpening.png)
 
-     In Dynamo, you would only be allowed to query with the `PK` and `GSI1PK` values, and nothing else. These are partition keys (or shard keys depending on who you ask) which allow Dynamo to split the data up across many 10gb storage nodes for what is essentially a hash table but with SSDs. It knows exactly where to go to find your item, because it's broken up by these keys and it doesn't have to scan all of the items in the table.
-     The two keys I highlighted give you the access patterns of `Give me this specific opening by this ID` with the PK and `Give me all of the openings in this org` with the GSI1PK keys. You would then need to do any other type of filtering at your app layer.
+   In Dynamo, you would only be allowed to query with the `PK` and `GSI1PK` values, and nothing else. These are partition keys (or shard keys depending on who you ask) which allow Dynamo to split the data up across many 10gb storage nodes for what is essentially a hash table but with SSDs. It knows exactly where to go to find your item, because it's broken up by these keys and it doesn't have to scan all of the items in the table.
+   The two keys I highlighted give you the access patterns of `Give me this specific opening by this ID` with the PK and `Give me all of the openings in this org` with the GSI1PK keys. You would then need to do any other type of filtering at your app layer. As I talked to more and more potential customers, they had access patterns that I did not envision which would negate the performance benefits of having the access patterns tightly coupled with the data model.
 
-  2. The 400kb item limit
+2. The 400kb item limit
 
-     This was mentioned briefly up above, but Dynamo has an item size limit of 400kb. This is perfectly fine for most practical purposes, but if you would like to embed more data into your item this could fill up fast. I wanted Plutomi to support a virtually unlimited number of stages in an opening and knew someone would hit this limit so it was something I needed to work around.
+   This was mentioned briefly up above, but Dynamo has an item size limit of 400kb. This is perfectly fine for most practical purposes, but if you would like to embed more data into your item this could fill up fast. I wanted Plutomi to support a virtually unlimited number of stages in an opening and knew someone would hit this limit so it was something I needed to work around.
 
-- How MongoDB addresses these problems
+#### How MongoDB addresses these problems
 
-  Under the hood, MongoDB and DynamoDB are the same. They both have the same storage partitioning model, they both allow indexing of attributes for faster performance, and they're both extremely fast at these key value lookups which are most of the access patterns in Plutomi:
+Under the hood, MongoDB and DynamoDB are the same. They both have the same storage partitioning model, they both allow indexing of attributes for faster performance, and they're both extremely fast at these key value lookups which are most of the access patterns in Plutomi:
 
       - Give me all of the users in my org
       - Give me all of the webhooks in my org
@@ -126,21 +126,23 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
       - Give me all of the pending invites for my org
       - Give me all of the webhooks in my org
 
-  As soon as you start introducing a `where` clause like you would in a relational database, DynamoDB breaks down. It _forces_ you to query using an index, but you also can't index every attribute as that will increase your storage costs dramatically.
+As soon as you start introducing a `where` clause like you would in a relational database, DynamoDB breaks down. It _forces_ you to query using an index, but you also can't index every attribute as that will increase your storage costs dramatically.
 
-  MongoDB does not force you to use an index lookup allowing for adhoc queries. If you do use indexes though, you can index _arrays_ and _json_ allowing for multiple properties indexed at once like the picture below. It is common practice to name this property something inconspicuous like `target`, as it's storing pointers to other documents in separate collections or `Enum` values. Below is an example of an Opening in MongoDB, with it's `Org` and `OpeningState` indexed in this target array.
+MongoDB does not force you to use an index lookup allowing for adhoc queries. If you do use indexes though, you can index _arrays_ and _json_ allowing for multiple properties indexed at once like the picture below. It is common practice to name this property something inconspicuous like `target`, as it's storing pointers to other documents in separate collections or `Enum` values. Below is an example of an Opening in MongoDB, with it's `Org` and `OpeningState` indexed in this target array.
 
-  ![mongo_opening](/assets/mongo_opening.png)
+![mongo_opening](/assets/mongo_opening.png)
 
-  It also helps that the MongoDB item size limit is 40x higher than Dynamo's, if you do want to embed a bunch of nested documents together.
+You might have noticed that a lot of entities have an `OrgId` built in to one of these indexes. This not only allows for quicker queries when searching as the query planner will use this index to filter out documents _not_ in the org first, but it serves as an extra layer of security due to explicit tenant isolation. This `OrgId` comes from the user's session, so by default, they will _only_ have access to Openings, Stages, Applicants, etc. that are in their org. It is _impossible_ for them to get access to another tenant's information by doing some sort of SQL injection.
 
-  As stated above, I also have `staging` and `production` databases depending on the deployment environment of the GitHub action:
+I also have `staging` and `production` databases depending on the deployment environment of the GitHub action:
 
-  ![mongo_envs](/assets/mongo_envs.png)
+![mongo_envs](/assets/mongo_envs.png)
 
-  My servers are connecting to my database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting who can connect using IP addresses:
+My servers are connecting to the database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting who can connect using IP addresses:
 
-  ![mongo_ip](/assets/mongo_ip.png)
+![mongo_ip](/assets/mongo_ip.png)
+
+Another bonus is that the MongoDB item size limit is 40x higher than Dynamo's, if I ever do want to embed a bunch of nested documents together.
 
 This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
