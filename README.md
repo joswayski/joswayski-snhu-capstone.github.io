@@ -44,7 +44,7 @@ At the start of CS-499 at SNHU, I created a code review going over my planned en
 
 ## Plutomi Artifact and Enhancements
 
-> Note: I am using one artifact for all three categories of this ePortfolio. You can view the old and new versions of the artifact in the `old_plutomi` and `new_plutomi` directories.
+> Note: I am using one artifact for all three categories of this ePortfolio. You can view the old and new versions of the artifact in the `old_plutomi` and `new_plutomi` directories, or viewing the [repository on github](https://github.com/plutomi/plutomi)
 
 ### Software Design and Engineering
 
@@ -262,6 +262,6 @@ We are limiting access to the database via IPs, and embedding a tenant ID right 
 
 3. By migrating the stages to use a doubly linked list to maintain their order in the parent entity allowing for an unlimited number of stages to be created per opening and creating a sorting algorithm to traverse the doubly linked list and sort it in a reasonable time, I designed and evaluated computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices.
 
-4. By implementing an automated continuous delivery pipeline which deploys changes to a live environment to get rapid feedback and improve iteration speed in an agile environment, I demonstrated an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.
+4. By implementing an automated continuous delivery pipeline which deploys changes to a live environment to get rapid feedback and improve iteration speed in an agile environment, and migrating databases to MongoDB to support ever changing access patterns from customers, I demonstrated an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.
 
 5. By forcing database queries to use a tenant ID, locking connections to the database to come from a specific set of IP ranges, and storing secrets outside of the codebase, I developed a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.
