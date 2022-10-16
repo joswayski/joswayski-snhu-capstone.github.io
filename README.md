@@ -91,7 +91,7 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
   ![doubly](/assets/doubly_linked_list.png)
 
-  This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever a stage is moved in it's order, which I will talk more on below.
+  This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes, which I will talk on more on below in the [Narratives](#narratives) section.
 
 ### Databases
 
