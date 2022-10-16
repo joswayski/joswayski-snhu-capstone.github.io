@@ -128,11 +128,19 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
   As soon as you start introducing a `where` clause like you would in a relational database, DynamoDB breaks down. It _forces_ you to query using an index, but you also can't index every attribute as that will increase your storage costs dramatically.
 
-  MongoDB does not force you to use an index lookup allowing for adhoc queries, you can even index _arrays_ and _json_. This means that with ONE index, you can have multiple properties indexed at once like the picture below. It is common practice to name this property something inconspicuous like `target`, as it's storing pointers to all of the other documents in separate collections. Below is an example of an Opening in MongoDB, with it's `Org` and `OpeningState` indexed in this target array:
+  MongoDB does not force you to use an index lookup allowing for adhoc queries. If you do use indexes though, you can index _arrays_ and _json_ allowing for multiple properties indexed at once like the picture below. It is common practice to name this property something inconspicuous like `target`, as it's storing pointers to other documents in separate collections or `Enum` values. Below is an example of an Opening in MongoDB, with it's `Org` and `OpeningState` indexed in this target array.
 
   ![mongo_opening](/assets/mongo_opening.png)
 
   It also helps that the MongoDB item size limit is 40x higher than Dynamo's, if you do want to embed a bunch of nested documents together.
+
+  As stated above, I also have `staging` and `production` databases depending on the deployment environment of the GitHub action:
+
+  ![mongo_envs](/assets/mongo_envs.png)
+
+  My servers are connecting to my database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting who can connect using IP addresses:
+
+  ![mongo_ip](/assets/mongo_ip.png)
 
 This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
