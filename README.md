@@ -30,7 +30,7 @@ As a software engineer, I was already very familiar with these topics from my da
 
 As I progress throughout my career, I would like to be knowledgeable in a variety of areas with a specialization in cloud technologies like Amazon Web Services. The changes made in this ePortfolio reflect my professional goals by making me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science and the software application development lifecycle as well as my desired future specialization in cloud computing.
 
-In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [open source](https://github.com/plutomi/plutomi) applicant tracking system that I created and have been working on for just over a year. The first section is a code review created at the start of CS-499 outlining planned enhancements that I could make to the project. The next section is a deep dive into the technical enhancements made, how they work, and how they demonstrate my skills and abilities in the three categories of software design and engineering, algorithms and data structures, and databases. Finally, I will describe how these enhancements helped me achieve the desired course outcomes of CS-499 and my computer science program at SNHU.
+In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [open source](https://github.com/plutomi/plutomi) applicant tracking system that I created and have been working on for just over a year. The first section is a code review created at the start of CS-499 outlining planned enhancements that I could make to the project. The next section is a deep dive into the technical enhancements made and how they demonstrate my skills and abilities in the three categories of software design and engineering, algorithms and data structures, and databases. Finally, I will describe how these enhancements helped me achieve the desired course outcomes of CS-499 and my computer science program at SNHU.
 
 ## Code Review
 
@@ -95,11 +95,11 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
 ### Databases
 
-For the database section of this ePortfolio, I migrated Plutomi's database (DynamoDB) over to MongoDB. There are many tiny reasons that eventually cumulated to this decision, but there were two big ones that I have documented below.
+For the database section of this ePortfolio, I migrated Plutomi's database (DynamoDB) over to MongoDB. There are many tiny reasons that eventually cumulated to this decision, but there were two big ones that I have documented below:
 
 1. No adhoc queries
 
-   DynamoDB pretty incredible, boasting over [100 million requests per second](https://aws.amazon.com/blogs/aws/amazon-prime-day-2022-aws-for-the-win/) during their 2022 prime day with single digit millisecond responses. This performance comes at the cost of losing adhoc querying capabilities. Let's take a look at an example. Below is an `Opening` entity in Dynamo:
+   DynamoDB is pretty incredible, boasting over [100 million requests per second](https://aws.amazon.com/blogs/aws/amazon-prime-day-2022-aws-for-the-win/) during their 2022 prime day with single digit millisecond responses. This performance comes at the cost of losing adhoc querying capabilities. Let's take a look at an example. Below is an `Opening` entity in Dynamo:
 
    ![dmop](/assets/dynamoOpening.png)
 
@@ -108,7 +108,7 @@ For the database section of this ePortfolio, I migrated Plutomi's database (Dyna
 
 2. The 400kb item limit
 
-   This was mentioned briefly up above, but Dynamo has an item size limit of 400kb. This is perfectly fine for most practical purposes, but if you would like to embed more data into your item this could fill up fast. I wanted Plutomi to support a virtually unlimited number of stages in an opening and knew someone would hit this limit so it was something I needed to work around.
+   This was mentioned briefly up above, but Dynamo has an item size limit of 400kb. This is perfectly fine for most practical purposes, but if you would like to embed more data into your item this could fill up fast. I wanted Plutomi to support a virtually unlimited number of stages in an opening and knew someone would hit this limit so it was something I needed to work around. If a user wants to embed applicant responses into the applicant themselves, 400kb might not be enough either. I planned around this by storing applicant responses separate from the applicant and indexing the applicant ID on the response to link them. I also want to give users the ability to add custom metadata to their applicants, and giving them a full megabyte just for that seems more than reasonable.
 
 #### How MongoDB addresses these problems
 
@@ -142,11 +142,19 @@ My servers are connecting to the database with a username and password, however,
 
 ![mongo_ip](/assets/mongo_ip.png)
 
-Another bonus is that the MongoDB item size limit is 40x higher than Dynamo's, if I ever do want to embed a bunch of nested documents together.
+Another bonus is that the MongoDB item size limit is 40x higher than Dynamo's, if I ever do want to embed a bunch of nested documents together or allow custom metadata from the users.
 
 ## Narratives
 
-This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
+In the code review video I give some background as to why I decided to build this Plutomi. For those that are not able to watch it, I worked on recruiting at a large food delivery company in the US. The system that we used at the time allowed us to scale up quickly when we were starting, but as we grew, we started hitting the limitations of the tool in the form of API throttling, long load times, and slow iteration speed from the vendor despite us being their largest customer by far.
+
+It would have really benefited us to have an open source solution that our developers could contribute to if needed to implement the changes that we desired, as well as to host our own solution if we wanted to go that route. This is why I set off to build my own version to address these short comings.
+
+The reason it was chosen for this ePortfolio, as well as for each category of improvement, is because this is a very large project that had room for improvement in every category due to hindsight of past design decisions, customer feedback, and many manual steps that could have been automated.
+
+- Challenges for infra, deployment times,
+- Challenges for
+  This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
 Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
 Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
@@ -163,8 +171,7 @@ Develop a security mindset that anticipates adversarial exploits in software arc
 ---
 
 • Develop an accompanying narrative that explains why you selected this artifact and the skills showcased in enhancing it.
-• Submit the artifact and narrative for instructor review and comments.
-You will then have the opportunity to incorporate these comments and polish the artifact before publishing it in the ePortfolio.
+
 The narrative should focus less on the actual creation of each artifact and more on the learning that happened through the creation of the artifact.
 
 . Submit in the course a written narrative about your professional journey---you can also share this on GitHub, but it must align to how you quantifiably (not I think, I feel but this aligns with this standards, best practice, security practice etc.) REACHED the five course outcomes through your enhancements:
