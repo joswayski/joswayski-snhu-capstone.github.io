@@ -40,7 +40,7 @@ In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [o
 
 ## Code Review
 
-At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed [here on youtube](https://www.youtube.com/watch?v=k08ZBwK6sBw)
+At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed [here on YouTube](https://www.youtube.com/watch?v=k08ZBwK6sBw)
 
 ## Plutomi Artifact and Enhancements
 
