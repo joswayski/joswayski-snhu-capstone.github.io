@@ -102,7 +102,7 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
   ![doubly](/assets/doubly_linked_list.png)
 
-  This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes. I will talk more on this below in the [Narratives](#narratives) section along with the sorting algorithm to traverse this doubly linked list and the algorithm to check for the new `Next` and `Previous` stages when changing the stage order.
+  This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever the stage order changes. I will talk more on this below in the [Narratives](#narratives) section along with the sorting algorithm to traverse this doubly linked list very fast.
 
 ### Databases
 
@@ -115,7 +115,7 @@ For the database section of this ePortfolio, I migrated Plutomi's database (Dyna
    ![dmop](/assets/dynamoOpening.png)
 
    In Dynamo, you would only be allowed to query with the `PK` and `GSI1PK` values, and nothing else. These are partition keys (or shard keys depending on who you ask) which allow Dynamo to split the data up across many 10gb storage nodes for what is essentially a hash table but with SSDs. It knows exactly where to go to find your item, because it's broken up by these keys and it doesn't have to scan all of the items in the table.
-   The two keys I highlighted give you the access patterns of `Give me this specific opening by this ID` with the PK and `Give me all of the openings in this org` with the GSI1PK keys. You would then need to do any other type of filtering at your app layer. As I talked to more and more potential customers, they had access patterns that I did not envision which would negate the performance benefits of having the access patterns tightly coupled with the data model.
+   The two keys I highlighted give you the access patterns of `Give me this specific opening by this ID` with the PK and `Give me all of the openings in this org` with the GSI1PK keys. You would then need to do any other type of filtering at your app layer. As I talked to more and more potential customers, they had access patterns that I did not envision which would negate the performance benefits of having the access patterns tightly coupled with the data model, or they simply weren't possible due to the missing adhoc support.
 
 2. The 400kb item limit
 
@@ -149,15 +149,15 @@ I also have `staging` and `production` databases depending on the deployment env
 
 ![mongo_envs](/assets/mongo_envs.png)
 
-My servers are connecting to the database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting who can connect to the IP addresses of my servers:
+My servers are connecting to the database with a username and password, however, even if those credentials get leaked nobody will be able to access it because I am limiting the connections to only come form the IP addresses of my servers:
 
 ![mongo_ip](/assets/mongo_ip.png)
 
-Another bonus is that the MongoDB item size limit is 40x higher than Dynamo's, if I ever do want to embed a bunch of nested documents together or allow custom metadata from the users.
+Another bonus is that the MongoDB item size limit is 40x higher than Dynamo's so we have a lot of flexibility there for any use case that might arise.
 
 ## Narratives
 
-In the code review video I give some background as to why I decided to build this Plutomi. For those that are not able to watch it, I worked on recruiting at a large food delivery company in the US. The system that we used at the time allowed us to scale up quickly when we were starting, but as we grew, we started hitting the limitations of the tool in the form of API throttling, long load times, and slow iteration speed from the vendor despite us being their largest customer by far.
+In the code review video I give some background as to why I decided to build Plutomi. For those that are not able to watch it, I worked on recruiting at a large food delivery company in the US. The system that we used at the time allowed us to scale up quickly when we were starting, but as we grew, we started hitting the limitations of the tool in the form of API throttling, long load times, and slow iteration speed from the vendor despite us being their largest customer by far.
 
 It would have really benefited us to have an open source solution that our developers could contribute to if needed to implement the changes that we desired, as well as to host our own solution if we wanted to go that route. This is why I set off to build my own version to address these short comings.
 
@@ -247,14 +247,14 @@ You can see how we can bucket the 16 different edge cases above into four basic 
    - Needs its PreviousStage updated? Y/N
    - Needs its NextStage updated? Y/N
 
-I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board. Here is the code for checking the first two conditions, and the same can be done on the _after we moved_ checks. I recommend [viewing the code directly](https://github.com/plutomi/plutomi/blob/main/utils/sortStages.ts) for clarity.
+I added comments to the code snippets below so anyone else can picture these scenarios without having to go to the literal drawing board. Here is the code for checking the first two conditions, and the same can be done on the _after we moved_ checks. I recommend [viewing the code directly](https://github.com/plutomi/plutomi/blob/main/Controllers/Stages/updateStage.ts#L88-L331) for clarity.
 ![prev](/assets/prev.png)
 ![prev2](/assets/prev2.png)
 
 ### Databases
 
 As stated above, the main reason for my switch from DynamoDB to MongoDB was for the adhoc querying functionality that was badly needed to support future use cases. We still get the same great performance of Dynamo, although with a bit more overhead as there are actual servers to worry about now and _it is_ a bit pricier. The APIs of each are a LOT different. There are no good ORMs for Dynamo, you essentially have to make your own. Type safety is an afterthought, and god forbid you use one of the [_many_ reserved words](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html) as a property name.
-We are limiting access to the database via IPs, and embedding a tenant ID right into our queries and indexes for performance and data isolation
+We are limiting access to the database via IPs, and embedding a tenant ID right into our queries and indexes for performance and data isolation.
 
 ## Outcomes
 
@@ -262,8 +262,8 @@ We are limiting access to the database via IPs, and embedding a tenant ID right 
 
 2. By adding type safety to entities as well as JSDoc comments which allow developers to see the inputs and outputs of a function right in their code editor, and creating publicly available issues on GitHub with outlined steps on what will it will take to accomplish each task, I designed, developed, and delivered professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
 
-3. By migrating the stages to use a doubly linked list to maintain their order in the parent entity allowing for an unlimited number of stages to be created per opening and creating a sorting algorithm to traverse doubly linked lists and sort them in a reasonable time and improved time complexity, I designed and evaluated computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices.
+3. By migrating the stages to use a doubly linked list to maintain their order in the parent entity allowing for an unlimited number of stages to be created per opening and creating a sorting algorithm to traverse the doubly linked list and sort it in a reasonable time, I designed and evaluated computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices.
 
-4. By implementing an automated continuous delivery pipeline which deploys changes to a live environment to get rapid feedback, I demonstrated an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.
+4. By implementing an automated continuous delivery pipeline which deploys changes to a live environment to get rapid feedback and improve iteration speed in an agile environment, I demonstrated an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.
 
 5. By forcing database queries to use a tenant ID, locking connections to the database to come from a specific set of IP ranges, and storing secrets outside of the codebase, I developed a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.
