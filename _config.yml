@@ -1,10 +1,10 @@
 # Configurations
-title: SNHU Capstone
+title: Jose Valerio - SNHU Capstone
 longtitle: Jose Valerio - SNHU Capstone
 author: Jose Valerio
 email: contact@josevalerio.com
 description: >
-  Build Jekyll site with the GitBook style.
+  Capstone ePortfolio for SNHU.
 
 version: 1.0
 gitbook_version: 3.2.3
