@@ -77,6 +77,22 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
 ### Algorithms and Data structures
 
+- The problem
+
+  Since Plutomi is an applicant tracking system, we are allowing our users to create `Openings` in their organization that people can apply to. These openings have `Stages` that can be re-arranged whenever the user wants. We were storing the order of these stages on the parent entity (the opening) as an array of stage IDs:
+
+  ![stageorder](/assets/stage_order.png)
+
+  An issue arises when a user wants to have hundreds, or even thousands of stages in an opening. We would need to retrieve all of these stage IDs _every time we retrieved the parent opening_ and on top of that, we now have a theoretical max limit on the number of stages that an opening could have because the opening item in the database would get too big once it crossed a certain threshold (400kb in the case of DynamoDB).
+
+- The solution
+
+  Instead of storing stage IDs on the parent, I used a doubly linked list on the stage itself. The stage is now in charge of keeping track of the stage that came before it, and the stage that comes after:
+
+  ![doubly](/assets/doubly_linked_list.png)
+
+  This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you'll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever a stage is moved in it's order, which I will talk more on below.
+
 ### Databases
 
 -

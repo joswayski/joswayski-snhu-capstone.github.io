@@ -309,6 +309,27 @@ As a software engineer, I was already very familiar with these topics from my da
 
 <h3 id="algorithms-and-data-structures">Algorithms and Data structures</h3>
 
+<ul>
+  <li>
+    <p>The problem</p>
+
+    <p>Since Plutomi is an applicant tracking system, we are allowing our users to create <code class="language-plaintext highlighter-rouge">Openings</code> in their organization that people can apply to. These openings have <code class="language-plaintext highlighter-rouge">Stages</code> that can be re-arranged whenever the user wants. We were storing the order of these stages on the parent entity (the opening) as an array of stage IDs:</p>
+
+    <p><img src="/assets/stage_order.png" alt="stageorder" /></p>
+
+    <p>An issue arises when a user wants to have hundreds, or even thousands of stages in an opening. We would need to retrieve all of these stage IDs <em>every time we retrieved the parent opening</em> and on top of that, we now have a theoretical max limit on the number of stages that an opening could have because the opening item in the database would get too big once it crossed a certain threshold (400kb in the case of DynamoDB).</p>
+  </li>
+  <li>
+    <p>The solution</p>
+
+    <p>Instead of storing stage IDs on the parent, I used a doubly linked list on the stage itself. The stage is now in charge of keeping track of the stage that came before it, and the stage that comes after:</p>
+
+    <p><img src="/assets/doubly_linked_list.png" alt="doubly" /></p>
+
+    <p>This removes the stage limit on the openings because you can keep adding stages to it and the item size in the database will stay the same, you’ll just create more stage items. This improves performance a ton with the added complexity of having to update multiple items whenever a stage is moved in it’s order, which I will talk more on below.</p>
+  </li>
+</ul>
+
 <h3 id="databases">Databases</h3>
 
 <p>-</p>
@@ -618,7 +639,7 @@ a <code class="language-plaintext highlighter-rouge">cover</code> field to the p
     },
     "gitbook": {
         "version": "3.2.3",
-        "time": "2022-10-15 21:27:24 -0400"
+        "time": "2022-10-15 21:41:15 -0400"
     },
     "basePath": "/joswayski-snhu-capstone.github.io",
     "book": {
