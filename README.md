@@ -26,7 +26,7 @@ As a software engineer, I was already very familiar with these topics from my da
 - Practicing tenant data isolation by embedding each tenant ID into the queryable index of each entity
 - Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers
 - Using a hash map with a custom sorting algorithm to efficiently sort the data structure above in O(n) time instead of O(n<sup>2</sup>)
-- Adding type safety wherever possible to prevent accessing undefined properties in code using TypeScript
+- Adding type safety wherever possible to prevent accessing undefined properties in code using TypeScript as well as comments on each property with JSDoc to give context to the developer on how that property is used
 
 As I progress throughout my career, I would like to be knowledgeable in a variety of areas with a specialization in cloud technologies like Amazon Web Services. The changes made in this ePortfolio reflect my professional goals by making me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science and the software application development lifecycle as well as my desired future specialization in cloud computing.
 
@@ -150,17 +150,15 @@ In the code review video I give some background as to why I decided to build thi
 
 It would have really benefited us to have an open source solution that our developers could contribute to if needed to implement the changes that we desired, as well as to host our own solution if we wanted to go that route. This is why I set off to build my own version to address these short comings.
 
-The reason it was chosen for this ePortfolio, as well as for each category of improvement, is because this is a very large project that had room for improvement in every category due to hindsight of past design decisions, customer feedback, and many manual steps that could have been automated.
+The reason it was chosen for this ePortfolio, as well as for each category of improvement, is because this is a very large project that had room for improvement in every category due to hindsight of past design decisions, customer feedback, hitting limits of our own due to our infrastructure, and many manual steps that should have been automated from the start.
 
-- Challenges for infra, deployment times,
-- Challenges for
-  This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
+#### Software Design and Engineering
 
-Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
-Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
-Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices
-Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals
-Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.
+Whenever I had a change to the project, I would make a pull request, review it myself, merge and deploy. The deployment step was a manual process: I would run the `cdk deploy` command with production credentials from my laptop and pray for the best. This had many downsides with the obvious one being having to manually do this every time I wanted to make a change, but it was also extremely prone to failure. If my laptop went to sleep, the deployment would crash. There was no `production-like` environment to actually test the changes, it was only `development` or live code that people are using. Some tools that _I was using_ also behave very differently when the `NODE_ENV` is in `development` or `production` like Nextjs, and I had no real way to test this either. I knew I had to automate this somehow and luckily I had experience with GitHub actions from my job and was able to quickly setup a deployment script and this process was automated relatively painlessly.
+
+TODO for 2 the communications, typesafety JSDOCs
+
+This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 
 > A. Briefly describe the artifact. What is it? When was it created?
 > B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
