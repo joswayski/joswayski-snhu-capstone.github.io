@@ -56,7 +56,7 @@ https://www.youtube.com/watch?v=k08ZBwK6sBw
 
   I implemented a continuous deployment pipeline using GitHub actions that deploys to Amazon Web Services whenever there is a new push into the `main` branch of the repository on GitHub. This was done by creating a `deploy.yaml` file in the `.github/workflows` directory with specific commands I would like it to run in order. There is also an option to manually run the workflow from the GUI if needed by providing the environment you would like to deploy to.
   ![githubActionsInput](/assets/gh_actions_input.png)
-  ![commands](/assets/commands.png)
+  ![commands](/assets/images/commands.png)
 
 - Environment Secrets
 
