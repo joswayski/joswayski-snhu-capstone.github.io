@@ -278,19 +278,3 @@ The narrative should focus less on the actual creation of each artifact and more
 4. By implementing an automated continuous delivery pipeline which deploys changes to a live environment to get rapid feedback, I demonstrated an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.
 
 5. By forcing database queries to use a tenant ID, locking connections to the database to come from a specific set of IP ranges, and storing secrets outside of the codebase, I developed a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.
-
-## --
-
----
-
-- Following industry standard best practices when working in a team such as requiring branch protection on the `main` branch and at least one approval from another team member before being able to merge new changes
-- Having separate environments and infrastructure to test those new changes in a `production-like` environment before they actually go live to the public
-- Implementing a CI/CD pipeline that automatically deploys to each environment saving engineer time and preventing mistakes with manual processes and scripts
-- Allowing stakeholders to view the progress of desired features and bugfixes by documenting them publicly on GitHub
-- Evaluating tradeoffs between different databases that were most appropriate for my use case and the desired performance SLAs
-- Following security best practices by storing environment secrets outside of the codebase that can be swapped without a code change
-- Limiting database connections to our server instances so they are not openly available to the public
-- Practicing tenant data isolation by embedding each tenant ID into the queryable index of each entity
-- Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers
-- Using a hash map with a custom sorting algorithm to efficiently sort the data structure above in O(n) time instead of O(n<sup>2</sup>)
-- Adding type safety wherever possible to prevent accessing undefined properties in code using TypeScript as well as comments on each property with JSDoc to give context to the developer on how that property is used
