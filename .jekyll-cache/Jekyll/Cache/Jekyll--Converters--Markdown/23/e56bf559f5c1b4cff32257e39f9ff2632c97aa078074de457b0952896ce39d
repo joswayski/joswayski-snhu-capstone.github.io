@@ -1,0 +1,257 @@
+I"U<h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li><a href="#professional-self-assessment">Professional Self Assessment</a></li>
+  <li><a href="#code-review">Code Review</a></li>
+  <li><a href="#plutomi-artifact-and-enhancements">Plutomi Artifact &amp; Enhancements</a></li>
+  <li><a href="#narratives">Narratives</a></li>
+</ol>
+
+<h2 id="professional-self-assessment">Professional Self Assessment</h2>
+
+<p>During my time at SNHU, I got to experience a wide variety of computer science topics ranging from building web apps, interacting with databases, the software development lifecycle using waterfall and agile methodologies, automation with CI/CD pipelines, client &amp; server development, and the algorithms that power everything under the hood.
+As a software engineer, I was already very familiar with these topics from my day to day work. By doing the coursework as well as building this ePortfolio, I was able to strengthen my knowledge of these topics and put the lessons I learned to use in a real world scenario in one of my own projects. Some examples of the changes that will be shown in the portfolio include:</p>
+
+<ul>
+  <li>Following industry standard best practices when working in a team such as requiring branch protection on the <code class="language-plaintext highlighter-rouge">main</code> branch and at least one approval from another team member before being able to merge new changes</li>
+  <li>Having separate environments and infrastructure to test those new changes in a <code class="language-plaintext highlighter-rouge">production-like</code> environment before they actually go live to the public</li>
+  <li>Implementing a CI/CD pipeline that automatically deploys to each environment saving engineer time and preventing mistakes with manual processes and scripts</li>
+  <li>Allowing stakeholders to view the progress of desired features and bugfixes by documenting them publicly on GitHub</li>
+  <li>Evaluating tradeoffs between different databases that were most appropriate for my use case and the desired performance SLAs</li>
+  <li>Following security best practices by storing environment secrets outside of the codebase that can be swapped without a code change</li>
+  <li>Limiting database connections to our server instances so they are not openly available to the public</li>
+  <li>Practicing tenant data isolation by embedding each tenant ID into the queryable index of each entity</li>
+  <li>Rearchitecting a core feature to use a more efficient data structure which would remove a massive limitation for our customers</li>
+  <li>Using a hash map with a custom sorting algorithm to efficiently sort the data structure above in O(n) time instead of O(n<sup>2</sup>)</li>
+  <li>Adding type safety wherever possible to prevent accessing undefined properties in code using TypeScript</li>
+</ul>
+
+<p>As I progress throughout my career, I would like to be knowledgeable in a variety of areas with a specialization in cloud technologies like Amazon Web Services. The changes made in this ePortfolio reflect my professional goals by making me a well rounded engineer since the changes that were made to my artifact touch on various aspects of computer science and the software application development lifecycle as well as my desired future specialization in cloud computing.</p>
+
+<p>In the next few sections I will introduce <a href="https://plutomi.com/">Plutomi</a>, an <a href="https://github.com/plutomi/plutomi">open source</a> applicant tracking system that I created and have been working on for just over a year. The first section is a code review created at the start of CS-499 outlining planned enhancements that I could make to the project. The next section is a deep dive into the technical enhancements made, how they work, and how they demonstrate my skills and abilities in the three categories of software design and engineering, algorithms and data structures, and databases. Finally, I will describe how these enhancements helped me achieve the desired course outcomes of CS-499 and my computer science program at SNHU.</p>
+
+<h2 id="code-review">Code Review</h2>
+
+<p>At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed here:</p>
+
+<p>https://www.youtube.com/watch?v=k08ZBwK6sBw</p>
+
+<h2 id="plutomi-artifact-and-enhancements">Plutomi Artifact and Enhancements</h2>
+
+<blockquote>
+  <p>Note: I am using one artifact for all three categories of this ePortfolio. You can view the old and new versions of the artifact in the <code class="language-plaintext highlighter-rouge">old_plutomi</code> and <code class="language-plaintext highlighter-rouge">new_plutomi</code> directories.</p>
+</blockquote>
+
+<h3 id="software-design-and-engineering">Software Design and Engineering</h3>
+
+<h4 id="enhancements">Enhancements</h4>
+
+<ul>
+  <li>
+    <p>GitHub Actions CI/CD</p>
+
+    <p>I implemented a continuous deployment pipeline using GitHub actions that deploys to Amazon Web Services whenever there is a new push into the <code class="language-plaintext highlighter-rouge">main</code> branch of the repository on GitHub. This was done by creating a <code class="language-plaintext highlighter-rouge">deploy.yaml</code> file in the <code class="language-plaintext highlighter-rouge">.github/workflows</code> directory with specific commands I would like it to run in order. There is also an option to manually run the workflow from the GUI if needed by providing the environment you would like to deploy to.
+<img src="/assets/gh_actions_input.png" alt="githubActionsInput" />
+<img src="/assets/commands.png" alt="commands" /></p>
+  </li>
+  <li>
+    <p>Environment Secrets</p>
+
+    <p>In the action itself, you can supply environment variables to each command</p>
+  </li>
+  <li>Pull Request Reviews And Code Owners</li>
+  <li>TypeSafety</li>
+  <li>Public Issues</li>
+</ul>
+
+<h3 id="algorithms-and-data-structures">Algorithms and Data structures</h3>
+
+<h3 id="databases">Databases</h3>
+
+<p>-</p>
+
+<p>This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.</p>
+
+<p>Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.
+Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.
+Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices
+Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals
+Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.</p>
+
+<h2 id="narratives">Narratives</h2>
+
+<blockquote>
+  <p>A. Briefly describe the artifact. What is it? When was it created?
+B. Justify the inclusion of the artifact(s) in your ePortfolio. Why did you select this item? What specific components of the artifact showcases your
+skills and abilities in software development?
+C. Reflect on the process of enhancing and/or modifying the artifact. What did you learn as you were creating it and improving it? What
+challenges did you face? How did you incorporate feedback as you made changes to the artifact? How was the artifact improved?</p>
+</blockquote>
+
+<hr />
+
+<p>• Develop an accompanying narrative that explains why you selected this artifact and the skills showcased in enhancing it.
+• Submit the artifact and narrative for instructor review and comments.
+You will then have the opportunity to incorporate these comments and polish the artifact before publishing it in the ePortfolio.
+The narrative should focus less on the actual creation of each artifact and more on the learning that happened through the creation of the artifact.</p>
+
+<p>. Submit in the course a written narrative about your professional journey—you can also share this on GitHub, but it must align to how you quantifiably (not I think, I feel but this aligns with this standards, best practice, security practice etc.) REACHED the five course outcomes through your enhancements:</p>
+
+<p>Course Outcome 1: You EmployED strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science by completing the following enhancements*<strong>*_**</strong></p>
+
+<p>Course Outcome 2: You DesignED, DevelopED, and DeliverED professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts by completing the following enhancements*<strong>*_**</strong></p>
+
+<p>Course Outcome 3: You DesignED and EvaluateED computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices by completing the following enhancements*<strong>*_**</strong></p>
+
+<p>Course Outcome 4: You DemonstrateD an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals by completing the following enhancements*<strong>*_**</strong></p>
+
+<p>Course Outcome 5: You DevelopED a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources by completing the following enhancements*<strong>*_**</strong></p>
+
+<p>Your portfolio must show what you can do. To say I know Python is your opinion, but to showcase a Python program with best practices, and support that with a written narrative for example carries a lot more evidence
+TODO best practices like using Typescript and types everywhere</p>
+
+<h2 id="why-jekyll-with-gitbook">Why Jekyll with GitBook</h2>
+
+<p>GitBook is an amazing frontend style to present and organize contents (such as book chapters
+and blogs) on Web. The typical to deploy GitBook at <a href="https://pages.github.com">Github Pages</a>
+is building HTML files locally and then push to Github repository, usually to the <code class="language-plaintext highlighter-rouge">gh-pages</code>
+branch. It’s quite annoying to repeat such workload and make it hard for people do version
+control via git for when there are generated HTML files to be staged in and out.</p>
+
+<p>This theme takes style definition out of generated GitBook site and provided the template
+for Jekyll to rendering markdown documents to HTML, thus the whole site can be deployed
+to <a href="https://pages.github.com">Github Pages</a> without generating and uploading HTML bundle every time when there are
+changes to the original repo.</p>
+
+<h2 id="how-to-get-started">How to Get Started</h2>
+
+<p>This theme can be used just as other <a href="https://pages.github.com">Jekyll themes</a> and support <a href="https://rubygems.org/gems/jekyll-remote-theme">remote theme</a>,
+see <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll">the official guide</a> as well.</p>
+
+<p>You can introduce this jekyll theme into your own site by either</p>
+
+<ul>
+  <li><a href="https://github.com/sighingnow/jekyll-gitbook/fork">Fork</a> this repository and add your markdown posts to the <code class="language-plaintext highlighter-rouge">_posts</code> folder.</li>
+  <li>Use as a remote theme in your <a href="https://github.com/sighingnow/jekyll-gitbook/blob/master/_config.yml"><code class="language-plaintext highlighter-rouge">_config.yml</code></a>(just like what we do for this
+site itself),</li>
+</ul>
+
+<h3 id="deploy-locally-with-jekyll-serve">Deploy Locally with Jekyll Serve</h3>
+
+<p>This theme can be ran locally using Ruby and Gemfiles.</p>
+
+<p><a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll">Testing your GitHub Pages site locally with Jekyll</a> - GitHub</p>
+
+<h2 id="full-text-search">Full-text search</h2>
+
+<p>The search functionality in jekyll-gitbook theme is powered by the <a href="https://github.com/gitbook-plugins/gitbook-plugin-search-pro">gitbook-plugin-search-pro</a> plugin and is enabled by default.</p>
+
+<p><a href="https://sighingnow.github.io/jekyll-gitbook/?q=generated">https://sighingnow.github.io/jekyll-gitbook/?q=generated</a></p>
+
+<h2 id="code-highlight">Code highlight</h2>
+
+<p>The code highlight style is configurable the following entry in <code class="language-plaintext highlighter-rouge">_config.yaml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">syntax_highlighter_style</span><span class="pi">:</span> <span class="s">colorful</span>
+</code></pre></div></div>
+
+<p>The default code highlight style is <code class="language-plaintext highlighter-rouge">colorful</code>, the full supported styles can be found from <a href="https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes">the rouge repository</a>. Customized
+style can be added to <a href="./assets/gitbook/rouge/">./assets/gitbook/rouge/</a>.</p>
+
+<h2 id="how-to-generate-toc">How to generate TOC</h2>
+
+<p>The jekyll-gitbook theme leverages <a href="https://github.com/allejo/jekyll-toc">jekyll-toc</a> to generate the <em>Contents</em> for the page.
+The TOC feature is not enabled by default. To use the TOC feature, modify the TOC
+configuration in <code class="language-plaintext highlighter-rouge">_config.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">toc</span><span class="pi">:</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">h_min</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="na">h_max</span><span class="pi">:</span> <span class="m">3</span>
+</code></pre></div></div>
+
+<h2 id="google-analytics-etc">Google Analytics, etc.</h2>
+
+<p>The jekyll-gitboook theme supports embedding the <a href="https://analytics.google.com/analytics/web/">Google Analytics</a>, <a href="https://www.cnzz.com/">CNZZ</a> and <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview">Application Insights</a> website analytical tools with the following
+minimal configuration in <code class="language-plaintext highlighter-rouge">_config.yaml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">tracker</span><span class="pi">:</span>
+  <span class="na">google_analytics</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&lt;YOUR</span><span class="nv"> </span><span class="s">GOOGLE</span><span class="nv"> </span><span class="s">ANALYTICS</span><span class="nv"> </span><span class="s">KEY,</span><span class="nv"> </span><span class="s">e.g,</span><span class="nv"> </span><span class="s">UA-xxxxxx-x&gt;"</span>
+</code></pre></div></div>
+
+<p>Similarly, CNZZ can be added with the following configuration in <code class="language-plaintext highlighter-rouge">_config.yaml</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">tracker</span><span class="pi">:</span>
+  <span class="na">cnzz</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&lt;YOUR</span><span class="nv"> </span><span class="s">CNZZ</span><span class="nv"> </span><span class="s">ANALYTICS</span><span class="nv"> </span><span class="s">KEY,</span><span class="nv"> </span><span class="s">e.g.,</span><span class="nv"> </span><span class="s">xxxxxxxx&gt;"</span>
+</code></pre></div></div>
+
+<p>Application Insights can be added with the following configuration in <code class="language-plaintext highlighter-rouge">_config.yaml</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">tracker</span><span class="pi">:</span>
+  <span class="na">application_insights</span><span class="pi">:</span> <span class="s2">"</span><span class="s">&lt;YOUR</span><span class="nv"> </span><span class="s">APPLICATION</span><span class="nv"> </span><span class="s">INSIGHTS</span><span class="nv"> </span><span class="s">CONNECTION</span><span class="nv"> </span><span class="s">STRING&gt;"</span>
+</code></pre></div></div>
+
+<h2 id="extra-stylesheet-or-javascript-elements">Extra StyleSheet or Javascript elements</h2>
+
+<p>You can add extra CSS or JavaScript references using configuration collections:</p>
+
+<ul>
+  <li>extra_css: for additional style sheets. If the url does not start by http, the path must be relative to the root of the site, without a starting <code class="language-plaintext highlighter-rouge">/</code>.</li>
+  <li>extra_header_js: for additional scripts to be included in the <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> tag, after the <code class="language-plaintext highlighter-rouge">extra_css</code> has been added. If the url does not start by http, the path must be relative to the root of the site, without a starting <code class="language-plaintext highlighter-rouge">/</code>.</li>
+  <li>extra_footer_js: for additional scripts to be included at the end of the HTML document, just before the site tracking script. If the url does not start by http, the path must be relative to the root of the site, without a starting <code class="language-plaintext highlighter-rouge">/</code>.</li>
+</ul>
+
+<h2 id="customizing-font-settings">Customizing font settings</h2>
+
+<p>The fonts can be customized by modifying the <code class="language-plaintext highlighter-rouge">.book.font-family-0</code> and <code class="language-plaintext highlighter-rouge">.book.font-family-1</code> entry in <a href="https://github.com/sighingnow/jekyll-gitbook/blob/master/gitbook/custom.css"><code class="language-plaintext highlighter-rouge">./assets/gitbook/custom.css</code></a>,</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.book.font-family-0</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="n">Georgia</span><span class="p">,</span> <span class="nb">serif</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.book.font-family-1</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Helvetica Neue"</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="tips-warnings-and-dangers-blocks">Tips, Warnings and Dangers blocks</h2>
+
+<p>The jekyll-gitbook theme supports customized kramdown attributes (<code class="language-plaintext highlighter-rouge">{: .block-tip }</code>, <code class="language-plaintext highlighter-rouge">{: .block-warning }</code>,
+<code class="language-plaintext highlighter-rouge">{: .block-danger }</code>) like that displayed in <a href="https://discordjs.guide/popular-topics/canvas.html#setting-up-napi-rs-canvas">the discord.js website</a>. The marker can be used like</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gt">&gt; ##### TIP</span>
+<span class="gt">&gt;</span>
+<span class="gt">&gt; This guide is last tested with @napi-rs/canvas^0.1.20, so make sure you have</span>
+<span class="gt">&gt; this or a similar version after installation.</span>
+<span class="gt">&gt; {: .block-tip }</span>
+</code></pre></div></div>
+
+<p>Rendered page can be previewed from</p>
+
+<p><a href="https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html">https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html</a></p>
+
+<h2 id="cover-image-inside-pages">Cover image inside pages</h2>
+
+<p>The jekyll-gitbook theme supports adding a cover image to a specific page by adding
+a <code class="language-plaintext highlighter-rouge">cover</code> field to the page metadata:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ---
+  title: Page with cover image
+  author: Jose Valerio
+  date: 2022-05-24
+  category: Jekyll
+  layout: post
+<span class="gi">+ cover: /assets/jekyll-gitbook/dinosaur.gif
+</span>  ---
+</code></pre></div></div>
+
+<p>The effect can be previewed from</p>
+
+<p><a href="https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-05-24-page_cover.html">https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-05-24-page_cover.html</a></p>
+
+<h2 id="license">License</h2>
+
+<p>This work is open sourced under the Apache License, Version 2.0.</p>
+
+<p>Copyright 2019 Jose Valerio.</p>
+
+:ET

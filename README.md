@@ -34,13 +34,40 @@ In the next few sections I will introduce [Plutomi](https://plutomi.com/), an [o
 
 ## Code Review
 
-At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by the end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed here:
+At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed here:
 
 https://www.youtube.com/watch?v=k08ZBwK6sBw
 
 ## Plutomi Artifact and Enhancements
 
-> Note: I am using one artifact for all three categories of this ePortfolio
+> Note: I am using one artifact for all three categories of this ePortfolio. You can view the old and new versions of the artifact in the `old_plutomi` and `new_plutomi` directories.
+
+### Software Design and Engineering
+
+#### Enhancements
+
+- GitHub Actions CI/CD
+
+  I implemented a continuous deployment pipeline using GitHub actions that deploys to Amazon Web Services whenever there is a new push into the `main` branch of the repository on GitHub. This was done by creating a `deploy.yaml` file in the `.github/workflows` directory with specific commands I would like it to run in order. There is also an option to manually run the workflow from the GUI if needed by providing the environment you would like to deploy to.
+  ![githubActionsInput](/assets/gh_actions_input.png)
+  ![commands](/assets/commands.png)
+
+- Environment Secrets
+
+  In the action itself, you can supply environment variables to each command with a `env` property. This allows us to change environment variables through GitHub's GUI without requiring a code change. We can manually re-deploy to have these changes take effect. We also have separate secrets per environment, one for `staging` and one for `production`.
+
+  ![envaction](/assets/env_action.png)
+  ![envsecrets](/assets/env_secrets.png)
+
+- Pull Request Reviews And Code Owners
+- TypeSafety
+- Public Issues
+
+### Algorithms and Data structures
+
+### Databases
+
+-
 
 This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.
 

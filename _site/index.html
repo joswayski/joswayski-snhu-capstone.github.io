@@ -256,15 +256,46 @@ As a software engineer, I was already very familiar with these topics from my da
 
 <h2 id="code-review">Code Review</h2>
 
-<p>At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by the end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed here:</p>
+<p>At the start of CS-499 at SNHU, I created a code review going over my planned enhancements for Plutomi. In the video I describe what Plutomi is, how it can be used by end customers, the planned enhancements I wanted to make to the project as well as the reasoning behind those enhancements. The video can be viewed here:</p>
 
 <p>https://www.youtube.com/watch?v=k08ZBwK6sBw</p>
 
 <h2 id="plutomi-artifact-and-enhancements">Plutomi Artifact and Enhancements</h2>
 
 <blockquote>
-  <p>Note: I am using one artifact for all three categories of this ePortfolio</p>
+  <p>Note: I am using one artifact for all three categories of this ePortfolio. You can view the old and new versions of the artifact in the <code class="language-plaintext highlighter-rouge">old_plutomi</code> and <code class="language-plaintext highlighter-rouge">new_plutomi</code> directories.</p>
 </blockquote>
+
+<h3 id="software-design-and-engineering">Software Design and Engineering</h3>
+
+<h4 id="enhancements">Enhancements</h4>
+
+<ul>
+  <li>
+    <p>GitHub Actions CI/CD</p>
+
+    <p>I implemented a continuous deployment pipeline using GitHub actions that deploys to Amazon Web Services whenever there is a new push into the <code class="language-plaintext highlighter-rouge">main</code> branch of the repository on GitHub. This was done by creating a <code class="language-plaintext highlighter-rouge">deploy.yaml</code> file in the <code class="language-plaintext highlighter-rouge">.github/workflows</code> directory with specific commands I would like it to run in order. There is also an option to manually run the workflow from the GUI if needed by providing the environment you would like to deploy to.
+<img src="/assets/gh_actions_input.png" alt="githubActionsInput" />
+<img src="/assets/commands.png" alt="commands" /></p>
+  </li>
+  <li>
+    <p>Environment Secrets</p>
+
+    <p>In the action itself, you can supply environment variables to each command with a <code class="language-plaintext highlighter-rouge">env</code> property. This allows us to change environment variables through GitHub’s GUI without requiring a code change. We can manually re-deploy to have these changes take effect. We also have separate secrets per environment, one for <code class="language-plaintext highlighter-rouge">staging</code> and one for <code class="language-plaintext highlighter-rouge">production</code>.</p>
+
+    <p><img src="/assets/env_action.png" alt="envaction" />
+<img src="/assets/env_secrets.png" alt="envsecrets" /></p>
+  </li>
+  <li>Pull Request Reviews And Code Owners</li>
+  <li>TypeSafety</li>
+  <li>Public Issues</li>
+</ul>
+
+<h3 id="algorithms-and-data-structures">Algorithms and Data structures</h3>
+
+<h3 id="databases">Databases</h3>
+
+<p>-</p>
 
 <p>This is mostly what changed (code review summary ) and the technical aspect. Narratives is more of the experience modifying the artifact.</p>
 
@@ -571,7 +602,7 @@ a <code class="language-plaintext highlighter-rouge">cover</code> field to the p
     },
     "gitbook": {
         "version": "3.2.3",
-        "time": "2022-10-15 18:47:14 -0400"
+        "time": "2022-10-15 21:13:38 -0400"
     },
     "basePath": "/joswayski-snhu-capstone.github.io",
     "book": {
